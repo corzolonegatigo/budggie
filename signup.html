@@ -6,21 +6,28 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <h1>Log In</h1>
+    <h1>Sign Up</h1>
     
-    <form id="login">
+    <form id="signup">
+      <label for="username">Email</label>
+      <input type="text" id="email" required>
       <label for="username">Username</label>
       <input type="text" id="username" required>
       <label for="password">Password</label>
       <input type="text" id="password" required>
 
+      <label id="profilePicture">Set Profile Picture</label>
+      <input type="file" id="imageInput" accept="image/*" />
+      
+
+
       <input type="submit" value="Send" id="login-submit">
     </form>
 
-    <a id="login-signup-switch" href="./signup.html">Sign Up</a>
+    <a id="login-signup-switch" href="./index.html">Log In</a>
     
     <script type="module" src="/main.js"></script>
     <script src="https://ipapp-673e.restdb.io/rest/_jsapi.js"></script>
-    <script type="module" src="/login.js"></script>
+    <script type="module" src="/signup.js"></script>
   </body>
 </html> 
