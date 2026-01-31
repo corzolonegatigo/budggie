@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        
+
         console.log(`${DB_URL}/individuals?q=${query}`);
         fetch(`${DB_URL}/individuals?q=${query}`, settings)
             .then(response => {
@@ -38,10 +38,22 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log("Results:", data);
                 if (data.length > 0) {
                 console.log("Found user:", data[0]);
+                window.location.href = "./main.html"
+
+
+                window.localStorage.setItem("User", usernameIn)
+
                 } else {
                 console.log("No user found with that username");
                 }
             })
+
+
+        document.getElementById('username').value = '';
+        document.getElementById("password").value = '';
+
+
+
         
 
 
