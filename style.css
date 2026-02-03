@@ -29,3 +29,32 @@ form {
     flex-direction: row;
     gap: 12px;
 }
+
+
+/*listing items*/
+.items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2vh 2vw
+}
+
+.listing-item {
+    background-color: antiquewhite;
+    border-radius: 24px;
+    padding: 2vh 2vw;
+    align-items: center;
+    justify-content: center;
+    flex: 1 0 20%;
+}
+
+.thumbnail {
+    width: 20vw;
+    height: 20vh;
+}
+
+.item-description {
+    width: 90%;
+}
+
+

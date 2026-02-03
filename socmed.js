@@ -2,6 +2,8 @@ import { APIKEY, DB_URL } from "./config.js";
 import { socmed_post_data } from "./mock_data.js";
 
 
+// WORKS WITHOUT THE DB INTEGRATION (FOR NOW)
+
 const POST_TEMPLATE = {
     
     title: "nil",
