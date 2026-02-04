@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
         
 
         const item_thumbnail = document.createElement('img');
-        console.log(itemdata.img_main)
         item_thumbnail.src = itemdata.img_main;
         item_thumbnail.className = "thumbnail";
 
@@ -34,6 +33,13 @@ document.addEventListener("DOMContentLoaded", function () {
         // append post to section
 
         items_section.appendChild(item_listing);
+
+        item_listing.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.localStorage.setItem('item-listing-data', JSON.stringify(itemdata));
+            window.location.href = "./selecting_item.html";
+
+        })
 
 
 

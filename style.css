@@ -58,3 +58,19 @@ form {
 }
 
 
+/*item listing page*/
+#selected-img {
+    width: 40vw;
+    height: 30vh;
+
+}
+
+.image-carousell {
+    display: flex;
+    gap: 1vw;
+}
+
+.slide {
+    width: 10vw;
+
+}

@@ -59,7 +59,7 @@ export const listing_items = [
     {
         title: "les paul guitar",
         desc: "guitar guitar music super incredible one of a kind les paul paul george clipper 76ers injured injured big 3 russell westbrook",
-        img_carou: [],
+        img_carou: ['/lespaul_img.webp','/paul2.jpg', '/lespaul_inset.jpg', "/paulhead.jpg", "/theman.jpg"],
         price: 100,
         img_main: "/public/lespaul_img.webp",
         sold_by: "Swee Lee",
@@ -69,7 +69,7 @@ export const listing_items = [
     {
         title: "les paul guitar",
         desc: "guitar guitar music super incredible one of a kind les paul paul george clipper 76ers injured injured big 3 russell westbrook",
-        img_carou: [],
+        img_carou: ['/lespaul_img.webp','/paul2.jpg', 'lespaul_inset.jpg', "paulhead.jpg", "theman.jpg"],
         price: 100,
         img_main: "/public/lespaul_img.webp",
         sold_by: "Swee Lee",
@@ -79,7 +79,7 @@ export const listing_items = [
     {
         title: "les paul guitar",
         desc: "guitar guitar music super incredible one of a kind les paul paul george clipper 76ers injured injured big 3 russell westbrook",
-        img_carou: [],
+        img_carou: ['/lespaul_img.webp','/paul2.jpg', 'lespaul_inset.jpg', "paulhead.jpg", "theman.jpg"],
         price: 100,
         img_main: "/public/lespaul_img.webp",
         sold_by: "Swee Lee",
@@ -90,7 +90,7 @@ export const listing_items = [
     {
         title: "les paul guitar",
         desc: "guitar guitar music super incredible one of a kind les paul paul george clipper 76ers injured injured big 3 russell westbrook",
-        img_carou: [],
+        img_carou: ['/lespaul_img.webp','/paul2.jpg', 'lespaul_inset.jpg', "paulhead.jpg", "theman.jpg"],
         price: 100,
         img_main: "/public/lespaul_img.webp",
         sold_by: "Swee Lee",
@@ -100,7 +100,7 @@ export const listing_items = [
     {
         title: "les paul guitar",
         desc: "guitar guitar music super incredible one of a kind les paul paul george clipper 76ers injured injured big 3 russell westbrook",
-        img_carou: [],
+        img_carou: ['/lespaul_img.webp','/paul2.jpg', 'lespaul_inset.jpg', "paulhead.jpg", "theman.jpg"],
         price: 100,
         img_main: "/public/lespaul_img.webp",
         sold_by: "Swee Lee",
@@ -110,7 +110,7 @@ export const listing_items = [
     {
         title: "les paul guitar",
         desc: "guitar guitar music super incredible one of a kind les paul paul george clipper 76ers injured injured big 3 russell westbrook",
-        img_carou: [],
+        img_carou: ['/lespaul_img.webp','/paul2.jpg', 'lespaul_inset.jpg', "paulhead.jpg", "theman.jpg"],
         price: 100,
         img_main: "/public/lespaul_img.webp",
         sold_by: "Swee Lee",
