@@ -8,6 +8,7 @@
   <body>
     
     <div class="page">
+      <section class="hide-toggle">
         <img id="selected-img">
         <div class="image-carousell" id="image-carousell">
             <button class="change-carousell-item" id="carou-bck">bck</button>
@@ -27,7 +28,38 @@
         </h3>
 
 
-        <button id="select-item-button"></button>
+        <button id="select-item-button">SELECT ITEM</button>
+
+      </section>
+      <section class="hide-toggle hidden">
+        <!-- hidden. vis toggled via select item button-->
+        <button id="return-to-viewing">back</button>
+        <h1 class="saving-for">Saving for <em id="item-name">...</em></h1>
+        <h2 class="caption">I want to reach this goal by: </h2>
+        <!--datepicker-->
+        <button id="select-date">Select Date</button>
+        <div id="month-year-selector" class="hidden">
+          <!--overlay-->
+          <div class="month-year">
+            <div id="months-selector"></div>
+            <div id="year-selector"></div>
+          </div>
+          
+          <button id="confirm">set date</button>
+        </div>
+        <section class="hidden" id="show-after-date-confirmed">
+          <h3 class="caption">To reach my goal I need to save $<em id="monthly-amt">...</em> per month!</h3>
+
+          <div class="affirm">
+            <img src='./public/checkbox_unlicked.svg' data-alt="./public/checkbox_clicked.svg" id="checkbox"> 
+            <h2 class="caption">I can reach my goals before <em id="final-date">66/77</em>!</h2>
+          </div>
+        
+
+          <button id="select-item">Begin</button>
+        </section>
+       
+      </section>
     </div>
 
 
@@ -37,6 +69,7 @@
     <script type="module" src="/main.js"></script>
     <script type="module" src="/load_item_page.js"></script>
     <script type="module" src="/image_carousell.js"></script>
+    <script type="module" src="/confirm_item.js"></script>
     <script src="https://ipapp-673e.restdb.io/rest/_jsapi.js"></script>
   </body>
 </html> 
