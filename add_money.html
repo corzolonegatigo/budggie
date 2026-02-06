@@ -18,17 +18,20 @@
       </div>
     </div>
     <div class="page">
-      <section class="search"></section>
-      <section class="items" id="items">
-        <!--injected from ./load_items.js-->
-        
-      </section>
-      <a href="/talk.html">talk to others</a>
+        <h1 class="section-head">Amount to Add</h1>
+        <form id="select-money-amount">
+            <input for="add-money-amt" id="money" type="number">
+            <h3 id="form-input-error"></h3>
+            <label for="money">Gain $10 in credit for every $100 you put in!</label>
+
+            <button id="confirm-added-money" type="submit">Send</button>
+        </form>
+
     </div>
    
     <script type="module" src="./scripts/main.js"></script>
-    <script type="module" src="./scripts/load_items.js"></script>
     <script type="module" src="./scripts/set_item_progress.js"></script>
+    <script type="module" src="./scripts/add_money.js"></script>
     <script src="https://ipapp-673e.restdb.io/rest/_jsapi.js"></script>
   </body>
 </html> 

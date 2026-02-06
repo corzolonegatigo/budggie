@@ -21,6 +21,7 @@ const final_date = document.getElementById('final-date')
 // get price
 const price = JSON.parse(window.localStorage.getItem('item-listing-data')).price;
 const item_name = JSON.parse(window.localStorage.getItem('item-listing-data')).title;
+console.log(item_name, 'itemname')
 
 
 var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -128,10 +129,12 @@ select_item.addEventListener('click', function(e) {
             "itemprogress": 0
         }
 
-        const userdata = JSON.parse(window.localStorage.getItem('Userdata'))[0];
+        const userdata = JSON.parse(window.localStorage.getItem('Userdata'));
+        console.log(window.localStorage.getItem('Userdata'))
         const DB_URL_INDIV = `${DB_URL}/individuals`;
 
         for (const key in user) {
+            console.log(key)
             if (key in userdata) {
                 user[key] = userdata[key];
             }
@@ -140,6 +143,8 @@ select_item.addEventListener('click', function(e) {
         
 
         user.currentitem = item_name;
+        console.log(user.currentitem)
+        user.itemprogress = 0;
         var setting = {
             "method": "PUT",
             "headers": {
@@ -159,8 +164,10 @@ select_item.addEventListener('click', function(e) {
             .then(data => {
                 window.localStorage.setItem('current-item', item_name);
                 console.log("data", data);
-                console.log(window.localStorage)
+                console.log(window.localStorage);
+                window.localStorage.setItem('Userdata', JSON.stringify(user))
                 window.location.href = './main.html'
+                
             })
 
 

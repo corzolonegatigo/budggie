@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Budggie</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body class="">
+    <div> <img class="back-arrow" src='/public/paul2.jpg'>pay me</div>
+    
+    <div class="page">
+        <h1 class="section-head">Budggy Private Limited</h1>
+        <section class="payment-opts">
+            <!-- i think you can use radio(?) i js did it like this cause i know how to do it-->
+            <button class='payment-opt' id="cc">credit card</button>
+            <button class='payment-opt' id="cc">visa</button>
+            <button class='payment-opt' id="cc">mcard</button>
+            <button class='payment-opt' id="cc">amex</button>
+            <button class='payment-opt' id="qr">paynow</button>
+            <button class='payment-opt' id="qr">wechat</button>
+        </section>
+
+        <h2 class="caption">Payment Due: <em id="amt-payable">$32</em></h2>
+        <form id="payment-details" class="hidden">
+            <section id="cc-section">
+                <label class="payment-form-label" for="cc-no">Card Details</label>
+                <input type="text" id="cc-no" class='payment-field cc' placeholder="Enter your Credit Card Number" >
+                <div class="expiration-date-form cc">
+                    <div class="momthyear-selector-payment">
+                        <select name="months" id="months" class="payment-field cc">
+
+                        </select>
+                        <select name="years" id="years" class="payment-field cc">
+
+                        </select>
+                    </div>
+                    <input type="text" id="ccv" class="payment-field small cc" placeholder="enter your ccv">
+                </div>
+            </section>
+
+
+            <label class="payment-form-label" for="country">Payment Information</label>
+            <input type="text" id="country" class='payment-field' placeholder="Country of Residence ">
+
+            <input type="text" id="address" class='payment-field' placeholder="Address">
+
+            <input type="text" id="billing-address" class='payment-field' placeholder="Billing Address">
+
+            <input type="text" id="postal-code" class='payment-field' placeholder="Postal Code">
+            <input type="text" id="phone-no" class="payment-field" placeholder="Phone Number">
+
+            <button type="submit" id="submit-payment-info">Confirm Payment</button>
+        </form>
+
+
+
+    </div>
+   
+    <script type="module" src="./scripts/main.js"></script>
+    <script type="module" src="./scripts/handle_payment.js"></script>
+    <script src="https://ipapp-673e.restdb.io/rest/_jsapi.js"></script>
+  </body>
+</html> 

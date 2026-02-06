@@ -37,13 +37,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (data.length > 0) {
                 console.log("Found user:", data[0]);
                 window.localStorage.setItem("User", usernameIn);
-                window.localStorage.setItem("Userdata", JSON.stringify(data));
-
+                console.log(data[0])
+                window.localStorage.setItem("Userdata", JSON.stringify(data[0]));
                 
-                window.location.href = "./main.html";
 
-
+                // write id to seperate item
+                window.localStorage.setItem('id', data[0]._id)
+                console.log(data)
                 
+                window.location.href = './main.html'
 
                 } else {
                 console.log("No user found with that username");
