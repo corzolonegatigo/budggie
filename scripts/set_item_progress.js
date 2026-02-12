@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (window.localStorage.getItem("current-item") === "undefined") {
         currItem.innerText = "No Item Selected.";
         progress_bar.classList.add('hidden');
+        progress_number.innerText = ''
 
     } else {
         currItem.innerText = window.localStorage.getItem("current-item");

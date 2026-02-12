@@ -11,8 +11,7 @@ const USERTEMPLATE = {
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    const payment_details = document.getElementById('payment-details');
-    const cc_section =  document.getElementById('cc-section');
+    const payment_buttons = document.querySelectorAll('.payment-opt');
     const payment_confirm = document.getElementById('submit-payment-info');
     const ccnum = document.getElementById('cc-no');
     const ccv = document.getElementById('ccv');
@@ -58,6 +57,24 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+
+   // add functionality to payment-option buttons
+   let prev = ''
+    payment_buttons.forEach(b =>
+        b.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (prev !== '') {
+                prev.classList.remove('payment-selected');
+            }
+
+            b.classList.add('payment-selected');
+            prev = b;
+
+        })
+        
+    );
+
+
     document.getElementById("login-submit").addEventListener("click", function (e) {
         e.preventDefault();
         const signin_fields = document.querySelectorAll('.signin-field');
@@ -93,8 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
          
     payment_confirm.addEventListener('click', function(e) {
-        e.preventDefault();
-
+        e.preventDefault()
         const payment_fields = document.querySelectorAll('.payment-field');
         if (validate_input_presence(payment_fields)) {
             let emailIn = document.getElementById("email").value;
@@ -149,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
                 .then(data => {
                     console.log("Signup:", data);
-                    window.localStorage.setItem('Userdata', JSON.stringify(data[0]))
+                    window.localStorage.setItem('Userdata', JSON.stringify(data))
                     window.location.href = './main.html'
                 })
                 .catch(err => console.error("Signup failed:", err));

@@ -9,17 +9,22 @@
 
     <div id="3js-env"></div>
     <section id="html-main" class="full-size">
-      <div class="page-main flex-center-column">
+      <div class="page-main flex-center-row">
 
 
       <!-- done this way instead of changing .innerText so its easier to implement backwards function-->
-      <h1 class="title hide-toggle">Budggy</h1>
-      <h1 class="title hide-toggle hidden">Welcome</h1>
-      
-      <h2 class="subhead hide-toggle">Sign Up</h2>
-      <h2 class="subhead hide-toggle hidden">Complete Your Account!</h2>
+      <div class="row-headsection">
+        <h1 class="title hide-toggle">Budggie</h1>
+        <h1 class="title hide-toggle hidden">Welcome</h1>
+        
+        
+      </div>
+      <div class="row-divider"></div>
       <form id="signup" class="login-signup-form hide-toggle" >
-        <input type="file" id="imageInput" accept="image/*" />
+        <h2 class="subhead hide-toggle">Sign Up</h2>
+        
+
+        <input type="file" id="imageInput" accept="image/*"/>
         <input type="text" id="email" placeholder="Email" class='signin-field' required>
         <input type="text" id="username" placeholder='Username' class='signin-field' required>
         <input type="text" id="password" placeholder='Password' class='signin-field' required>
@@ -34,34 +39,48 @@
       </form>
 
       <form id="payment-details" class="hidden hide-toggle payment-form">
-        
-        <label class="payment-form-label" for="cc-no">Card Details</label>
-        <input type="text" id="cc-no" class='payment-field cc' placeholder="Enter your Credit Card Number" >
-        <div class="expiration-date-form cc">
-            <div class="momthyear-selector-payment">
-                <select name="months" id="months" class="payment-field cc">
-                  <option value="" disabled selected hidden>Month</option>
-                </select>
-                <select name="years" id="years" class="payment-field cc">
-                  <option value="" disabled selected hidden>Year</option>
-                </select>
-
-                <input type="text" id="ccv" class="payment-field small cc" placeholder="enter your ccv">
+        <h2 class="subhead hide-toggle hidden">Complete Your Account!</h2>
+        <section class="payment-opts">
+            <!-- i think you can use radio(?) i js did it like this cause i know how to do it-->
+            <button class='payment-opt' id="cc">Credit Card</button>
+            <button class='payment-opt' id="visa"></button>
+            <button class='payment-opt' id="mcard"></button>
+            <button class='payment-opt' id="amex"></button>
+          </section>
+        <div class="payment-row">
+          
+          <section>
+            <label class="payment-form-label" for="cc-no">Card Details</label>
+            <input type="text" id="cc-name" class='payment-field cc' placeholder="Card Holder" >
+            <input type="text" id="cc-no" class='payment-field cc' placeholder="Card Number" >
+            <div class="expiration-date-form cc">
+                <div class="momthyear-selector-payment">
+                  <select name="months" id="months" class="payment-field cc">
+                      <option value="" disabled selected hidden>Month</option>
+                    </select>
+                    <select name="years" id="years" class="payment-field cc">
+                      <option value="" disabled selected hidden>Year</option>
+                    </select>     
+                </div>           
             </div>
+            <input type="text" id="ccv" class="payment-field small cc" placeholder="ccv">
+          </section>
+
+          <section>
+            <label class="payment-form-label" for="country">Payment Information</label>
+            <input type="text" id="country" class='payment-field' placeholder="Country of Residence ">
+
+            <input type="text" id="address" class='payment-field' placeholder="Address">
+
+            <input type="text" id="billing-address" class='payment-field' placeholder="Billing Address">
+
+            <input type="text" id="postal-code" class='payment-field' placeholder="Postal Code">
+            <input type="text" id="phone-no" class="payment-field" placeholder="Phone Number">
+
             
+          </section>
         </div>
-        
-        <label class="payment-form-label" for="country">Payment Information</label>
-        <input type="text" id="country" class='payment-field' placeholder="Country of Residence ">
-
-        <input type="text" id="address" class='payment-field' placeholder="Address">
-
-        <input type="text" id="billing-address" class='payment-field' placeholder="Billing Address">
-
-        <input type="text" id="postal-code" class='payment-field' placeholder="Postal Code">
-        <input type="text" id="phone-no" class="payment-field" placeholder="Phone Number">
-
-        <button type="submit" id="submit-payment-info" class="submit-login-signup-button">Confirm Payment</button>
+        <input type="submit" value="Confirm Payment" id="submit-payment-info" class="submit-login-signup-button">
       </form>
        
       </div>
