@@ -1,3 +1,4 @@
+import { addUser, checkUserAvail } from "../index.js";
 import { APIKEY, DB_URL } from "./config.js";
 import hidden_toggle from "./hide_toggle.js";
 
@@ -25,7 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(fields)
         for (const field of fields) {
             if (field.value === '') {
-                field.setCustomValidity('Please fill this field!')
                 valid = false;
                 field.value = '';
             }
@@ -75,37 +75,56 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-    document.getElementById("login-submit").addEventListener("click", function (e) {
+    document.getElementById("login-submit").addEventListener("click", async function (e) {
         e.preventDefault();
         const signin_fields = document.querySelectorAll('.signin-field');
-        if (validate_input_presence(signin_fields)) {
-            inject_monthyear()
-            hidden_toggle()
+        try {
+            const usernamePresent = await checkUserAvail() // returns false if username is available, returns the firebase reference if avail. safer (probably) to just check value in if loop rather than Bool()
+            const field_filled = validate_input_presence(signin_fields)
+            if ((field_filled) && (usernamePresent === false)) {
+                inject_monthyear()
+                hidden_toggle()
 
-            // validation 
-            phoneInput.addEventListener("input", () => {
-                phoneInput.value = phoneInput.value.replace(/[^\d ]/g, "");
-            });
+                // validation 
+                phoneInput.addEventListener("input", () => {
+                    phoneInput.value = phoneInput.value.replace(/[^\d ]/g, "");
+                });
 
-            postalInput.addEventListener("input", () => {
-                postalInput.value = postalInput.value.replace(/\D/g, "");
-            });
-            ccnum.addEventListener('input', () => {
-                ccnum.value = ccnum.value.replace(/\D/g, "");
-                if (ccnum.value.length > 16) {
-                    ccnum.value = ccnum.value.splice(0,16);
-                    ccnum.setCustomValidity('Too long!');
+                postalInput.addEventListener("input", () => {
+                    postalInput.value = postalInput.value.replace(/\D/g, "");
+                });
+                ccnum.addEventListener('input', () => {
+                    ccnum.value = ccnum.value.replace(/\D/g, "");
+                    if (ccnum.value.length > 16) {
+                        ccnum.value = ccnum.value.splice(0,16);
+                        ccnum.setCustomValidity('Too long!');
+                    }
+                });
+
+                ccv.addEventListener('input', () => {
+                    ccv.value = ccv.value.replace(/\D/g, "");
+                    if (ccv.value.length > 16) {
+                        ccv.value = ccv.value.splice(0,16);
+                        ccv.setCustomValidity('Too long!');
+                    }
+                });
+            } else {
+                console.log('here')
+                if (!field_filled) {
+                    document.querySelector('.error').innerText = 'You have a few input fields blank!';
+                } else {
+                    document.querySelector('.error').innerText = 'This username is taken, please try another one.'
                 }
-            });
+                document.querySelector('.error').classList.remove('hidden');
+                
+            }
 
-            ccv.addEventListener('input', () => {
-                ccv.value = ccv.value.replace(/\D/g, "");
-                if (ccv.value.length > 16) {
-                    ccv.value = ccv.value.splice(0,16);
-                    ccv.setCustomValidity('Too long!');
-                }
-            });
-        };
+
+        } catch (err) {
+            console.error("Error in listener:", err);
+        }
+       
+        
     });
 
          
@@ -116,59 +135,43 @@ document.addEventListener("DOMContentLoaded", function () {
             let emailIn = document.getElementById("email").value;
             let usernameIn = document.getElementById("username").value;
             let passwwordIn = document.getElementById("password").value;
-            let image = document.getElementById("imageInput").files[0];
+            let card_number = ccnum.value;
+            let ccv_num = ccv.value;
+            let cc_month = exp_mth.value;
+            let cc_year = yr_mth.value;
+            let cc_holder = document.getElementById('cc-name').value;
 
-                /*
-            if (!image) {
-                image = new File(
-                    "./public/default_profile.png"
-                )
-            }*/
-
-            const user = structuredClone(USERTEMPLATE);
-
-            user.email = emailIn;
-            user.username = usernameIn;
-            user.password = passwwordIn;
-
-            // to add files
-            const signupDataForm = new FormData();
-
-            signupDataForm.append("email", emailIn);
-            signupDataForm.append("username", usernameIn);
-            signupDataForm.append("password", passwwordIn);
-
-            if (image) {
-                signupDataForm.append("profilepicture", image);
+            const card = {
+                'card_number': card_number,
+                'ccv_num': ccv_num,
+                'cc_month': cc_month,
+                'cc_year': cc_year,
+                'cc_holder': cc_holder
             };
-            
 
-            // write post request
+
+            // get img input
+            const imageIn = document.getElementById('imageInput').files[0]
+            const imgReader = new FileReader();
+
+            console.log(document.getElementById('imageInput').files[0])
+
+            var img_str = ''
+            imgReader.onload = function(e) {
+                img_str = e.target.result;
+                console.log(img_str)
+                addUser(usernameIn, passwwordIn, emailIn, card, img_str)
+            }
+
+            console.log(imageIn)
+            console.log(Boolean(imageIn))
+            if (Boolean(imageIn)) {
+                imgReader.readAsDataURL(imageIn);
+            } else {
+                addUser(usernameIn, passwwordIn, emailIn, card, img_str)
+            }        
             
-            var postsettings = {
-                method: "POST",
-                headers: {
-                    "x-apikey": APIKEY,
-                    "cache-control": "no-cache",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(user),
-                
-                }
-            console.log(user)
-            fetch(`${DB_URL}/individuals`, postsettings)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Network response was not ok");
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log("Signup:", data);
-                    window.localStorage.setItem('Userdata', JSON.stringify(data))
-                    window.location.href = './main.html'
-                })
-                .catch(err => console.error("Signup failed:", err));
+            
         }
     })
        

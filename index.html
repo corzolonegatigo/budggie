@@ -8,21 +8,28 @@
   <body>
     <div id="3js-env"></div>
     <section id="html-main" class="full-size">
-      <div class="page-main flex-center-column">
+      <div class="page-main login-box">
 
       <h1 class="title">Budggy</h1>
       
-      <h2 class="subhead">Login</h2>
-        <form id="login" class="login-signup-form">
-          <input type="text" id="username" placeholder="Username" required>
-          <input type="text" id="password" placeholder='Password' required>
-          <h4 class="caption"> If you don't have an account, <a id="login-signup-switch" href="./signup.html">sign up</a></h4>
+      <div class="row-divider"></div>
+      <div class="login-signup-form">
+        <h2 class="subhead">Login</h2>
+          <form id="login" >
+            <input type="text" id="username" placeholder="Username" required>
+            
+            <input type="text" id="password" placeholder='Password' required>
+            <h4 class="caption"> If you don't have an account, <a id="login-signup-switch" href="./signup.html">sign up</a></h4>
 
+            
+          </form>
+          <h3 class="error hidden">Your username or password is incorrect.</h3>
           <input type="submit" value="Login" id="login-submit" class="submit-login-signup-button">
-        </form>
 
-       
+        
+        </div>
       </div>
+      
     </section>
     
     <script type="module" src="./scripts/three_environments/login_signin.js"></script>

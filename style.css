@@ -12,6 +12,7 @@
     --white-main: #FFF7F7;
     --green-main: #70877F;
     --red-main: #FCD1D3;
+    --red-darker: #F69094;
     --blue-main: #2270FF;
 
 }
@@ -48,6 +49,14 @@ html {
     justify-content: center;
     gap: 4rem;
     
+}
+
+.login-box {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+    grid-template-columns: 29% 1% 50%;
 }
 
 
@@ -110,6 +119,7 @@ input, select {
     font-size: 4rem;
     margin: 0 0 1rem 0;
     line-height: 1;
+    text-align: center;
 }
 
 .subhead {
@@ -137,6 +147,13 @@ input, select {
 
 }
 
+.error {
+    color: var(--red-darker);
+    margin: 0 0 0.5rem 0;
+    font-weight: 300;
+    text-align: left;
+    margin: 0 auto;
+}
 /* hide when needed bruteforce method. i think its this or innerHTML and this is easier*/ 
 .hidden {
     display: none;
@@ -148,9 +165,12 @@ input, select {
 
 
 .login-signup-form {
-    width: 40%;
-    align-items: start;
-    
+    width: 60%;
+    align-items: start;    
+}
+
+#login, #signup {
+    margin-bottom: 2rem;
 }
 
 #signup input {
@@ -160,7 +180,7 @@ input, select {
     margin-top: 1.5rem;
 }
 .login-signup-form input {
-    width: 90%;
+    width: 100%;
     background-color: var(--grey-alt);
     padding: 1rem;
     border: none;
@@ -174,16 +194,17 @@ input, select {
 
 }
 /* write like this so will override the width: 100% */
-.login-signup-form input.submit-login-signup-button, .payment-form input.submit-login-signup-button {
-    width: 70%;
+input.submit-login-signup-button, .payment-form input.submit-login-signup-button {
+    width: 100%;
+    padding: 1rem 1.5rem;
     background-color: var(--grey-main);
     color: var(--primary-text-color);
     font-size: 1.5rem;
     border-radius: 12px;
     font-weight: 600;
-    margin-top: 3rem;
     border: none;
-    margin: 3rem auto;
+    margin: 0rem auto;
+
 }
 
 .login-signup-form h4 {
@@ -201,7 +222,7 @@ input, select {
 /* payment info form */
 
 .payment-form{
-    width: 50%;
+    width: 100%;
     justify-content: start;
     align-items: start;
 }
@@ -212,9 +233,10 @@ input, select {
 
 .payment-row {
     gap: 10%;
-    margin-top: 2rem;
+    margin: 2rem 0;
     display: grid;
-    grid-template-columns: 30% 50%;
+    grid-template-columns: 30% 60%;
+
 }
 .payment-form input, select{
     width: 100%;
@@ -259,13 +281,9 @@ input, select {
 
 .expiration-date-form {
     display: flex;
-    
-}
-
-.momthyear-selector-payment {
-    display: flex;
+    align-items: center;
     gap: 0.5rem;
-    position: relative;
+    
 }
 
 .payment-opts {
@@ -305,6 +323,8 @@ input, select {
     border-width: 0.25rem;
     scale: 1.2;
 }
+
+
 
 
 /* add images here instead of in html itself because dn worry about the border radius*/
