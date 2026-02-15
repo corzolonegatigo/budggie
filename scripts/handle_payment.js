@@ -1,12 +1,13 @@
+import { updateSavedAmount } from "..";
 import { APIKEY, DB_URL } from "./config";
+import hidden_toggle from "./hide_toggle";
 
 document.addEventListener("DOMContentLoaded", function () { 
     const payment_details = document.getElementById('payment-details');
     console.log(payment_details)
     const payment_buttons = document.querySelectorAll('.payment-opt');
-    const cc_section =  document.getElementById('cc-section');
+    const payment_type_selector = document.getElementById('select-payment-type');
     const payment_confirm = document.getElementById('submit-payment-info');
-    let method_type = ''; // payment method type
 
     let monthyear_injected = false;
     let userdata = JSON.parse(localStorage.getItem("Userdata"));
@@ -14,89 +15,32 @@ document.addEventListener("DOMContentLoaded", function () {
     const saved_amt = window.localStorage.getItem('saved_amt');
     const money_to_add = window.localStorage.getItem('money_to_add');
     delete userdata._id
-
-
-    document.getElementById('amt-payable').innerText = `$${money_to_add}`
-    
+    let card_data = JSON.parse(userdata.card)
+    const final_amt = Number(saved_amt + money_to_add);
 
     // get input fields 
-    
+    document.getElementById('amt-added').innerText = `$${money_to_add}`
     const ccnum = document.getElementById('cc-no');
     const ccv = document.getElementById('ccv');
     const exp_mth = document.getElementById('months');
     const yr_mth = document.getElementById('years');
-    const phoneInput = document.getElementById("phone-no");
-    const postalInput = document.getElementById("postal-code");
+    const existing_cards = document.getElementById('existing-cards')
 
-    let prev = '' // might be faster than running a nested loop
-    payment_buttons.forEach(b =>
-        b.addEventListener('click', function (e) {
-            if (prev !== '') {
-                prev.classList.remove('payment-selected');
+
+
+    function validate_input_presence(fields) {
+        let valid = true
+        console.log(fields)
+        for (const field of fields) {
+            if (field.value === '') {
+                valid = false;
+                field.value = '';
             }
-
-            b.classList.add('payment-selected');
-            window.scrollTo(0, 0); // fix scroll
-            prev = b;
-            method_type = b.id;
-
-            load_payment_fields(b.id)
-
-        })
-        
-    );
-
-
-    // show payment fields
-    function load_payment_fields(type) {
-        payment_details.classList.remove('hidden');
-        if (type != 'cc') {
-            cc_section.classList.add('hidden');
-            
-        } else {
-            cc_section.classList.remove('hidden');
-            if (!monthyear_injected) {
-                inject_monthyear()
-            }
-
         }
-
-        // set input validatation 
-        
-
-        phoneInput.addEventListener("input", () => {
-            phoneInput.value = phoneInput.value.replace(/[^\d ]/g, "");
-        });
-
-        postalInput.addEventListener("input", () => {
-            postalInput.value = postalInput.value.replace(/\D/g, "");
-        });
-
-        if (method_type === 'cc') {
-
-            
-            
-            ccnum.addEventListener('input', () => {
-                ccnum.value = ccnum.value.replace(/\D/g, "");
-                if (ccnum.value.length > 16) {
-                    ccnum.value = ccnum.value.splice(0,16);
-                    ccnum.setCustomValidity('Too long!');
-                }
-            });
-
-            ccv.addEventListener('input', () => {
-                ccv.value = ccv.value.replace(/\D/g, "");
-                if (ccv.value.length > 16) {
-                    ccv.value = ccv.value.splice(0,16);
-                    ccv.setCustomValidity('Too long!');
-                }
-            });
-            
-        }
+        return valid;
     }
 
     function inject_monthyear() {
-        monthyear_injected = true
 
         var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         const currentDate = new Date();
@@ -117,78 +61,107 @@ document.addEventListener("DOMContentLoaded", function () {
             yr_mth.appendChild(year);
         }
 
-    
     }
 
+   // add functionality to payment-option buttons
+   let prev = ''
+   let payment_selected = false
+    payment_buttons.forEach(b =>
+        b.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (prev !== '') {
+                prev.classList.remove('payment-selected');
+            }
+
+            b.classList.add('payment-selected');
+            prev = b;
+            payment_selected = true
+        })
+        
+    );
+
+
+    document.getElementById('card').addEventListener('click', function(e) {
+        e.preventDefault();
+        payment_details.classList.remove('hidden')
+        payment_type_selector.classList.add('hidden')
+    });
+
+    document.getElementById('qr').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('payment-qr').classList.remove('hidden')
+        payment_type_selector.classList.add('hidden')
+    });
+
+    document.getElementById('payment-qr').addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        updateSavedAmount(final_amt, userdata);
+    })
+
     // handle payment confirmation
+    
+    inject_monthyear()
+
+    if (card_data) {
+        const line = document.createElement('div');
+        line.className = 'vert-line';
+        existing_cards.appendChild(line.cloneNode(true));
+
+        const cardlink = document.createElement('button');
+        cardlink.classList = 'payment-type';
+        const l4nmbers = card_data.card_number.slice(-4,-1)
+        cardlink.innerHTML = `<h4>Card ending with ${l4nmbers}</h4> <img src="/public/arrow_fwd.svg">`
+        
+        cardlink.addEventListener('click', function (e) {
+            e.preventDefault();
+            updateSavedAmount(final_amt, userdata);
+            console.log('hi')
+        })
+
+        existing_cards.appendChild(cardlink);
+        existing_cards.appendChild(line.cloneNode(true));
+        
+    }
+    
     payment_confirm.addEventListener('click', function(e) {
         e.preventDefault()
         const payment_fields = document.querySelectorAll('.payment-field');
 
-        const input_validity = validate_input_presence(payment_fields);
-        // write api req to update itemprogress if valid input
+        const field_filled = validate_input_presence(payment_fields);
 
-        if (input_validity) {
-            console.log(userdata)
-            userdata.itemprogress = Number(saved_amt + money_to_add);
-            console.log(userdata.itemprogress, 'prg')
+        if (field_filled && payment_selected) {
+            let card_number = ccnum.value;
+            let ccv_num = ccv.value;
+            let cc_month = exp_mth.value;
+            let cc_year = yr_mth.value;
+            let cc_holder = document.getElementById('cc-name').value;
 
-            // update itemprogress via api & localstorage 
-            var setting = {
-                "method": "PUT",
-                "headers": {
-                    "x-apikey": APIKEY,
-                    "Content-Type": "application/json"
-                },
-                "body": JSON.stringify(userdata),
-            }
-            console.log(userdata)
-            console.log(uid)
+            const card = {
+                'card_number': card_number,
+                'ccv_num': ccv_num,
+                'cc_month': cc_month,
+                'cc_year': cc_year,
+                'cc_holder': cc_holder
+            };
 
-            fetch(`${DB_URL}/individuals/${uid}`, setting)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Network response was not ok");
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log("Results:", data);
-                   
-                    console.log("Found user:", data[0]);
-                    window.localStorage.setItem("Userdata", JSON.stringify(data[0]));
-                    window.localStorage.removeItem('saved_amt');
-                    window.localStorage.removeItem('money_to_add');
-                    window.location.href = './main.html'
-                    
-                })
+
             
-            // ;
+            updateSavedAmount(final_amt, userdata);
+        } else {
+            // error msg
+            console.log('hi')
+            if (payment_selected) {
+                document.querySelector('.payment-setup-error').innerText = 'You have a few input fields blank!';
+            } else {
+                document.querySelector('.payment-setup-error').innerText = 'Please select a payment method!';
+            }
+            document.querySelector('.payment-setup-error').classList.remove('hidden');
         }
     })
 
     // checking if fields empty, clear each field after checked
-    function validate_input_presence(fields) {
-        let valid = true
-        if (method_type === 'cc') {
-            for (const field of fields) {
-                if (field.value === '') {
-                    field.setCustomValidity('Please fill this field!')
-                    valid = false;
-                    field.value = '';
-                }
-            }
-        } else {
-            for (const field of fields) {
-                if ((field.value === '') && !(field.classList.contains('cc'))){
-                    field.setCustomValidity('Please fill this field!')
-                    valid = false;
-                    field.value = '';
-                }
-            }
-        }
-        return valid;
-    }
+
 
 
     

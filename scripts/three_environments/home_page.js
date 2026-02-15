@@ -26,17 +26,42 @@ three_env.appendChild( renderer.domElement );
 // load custom mesh
 
 const loader = new GLTFLoader();
-const gltf = await loader.loadAsync( '/models/ps5bigger.glb');
+const gltf = await loader.loadAsync('/models/Hammer.glb');
 const mesh = gltf.scene
 
 // get reference size
 const box = new THREE.Box3().setFromObject(mesh)
 const size = box.getSize(new THREE.Vector3())
 
+const textureLoader = new THREE.TextureLoader();
+const texture = textureLoader.load('./models/BaseColour.png');
+
+
+const colorMap = textureLoader.load('./models/BaseColour.png');      // BaseColor / Albedo
+const aoMap = textureLoader.load('./models/AO.png');            // Ambient Occlusion
+const metallicMap = textureLoader.load('./models/Metallic.png');// Metallic
+const roughnessMap = textureLoader.load('./models/Roughness.png');// Roughness
+const normalMap = textureLoader.load('./models/Normals.png'); 
+
+
+const material = new THREE.MeshStandardMaterial({
+  map: colorMap,
+  aoMap: aoMap,
+  metalnessMap: metallicMap,
+  roughnessMap: roughnessMap,
+  normalMap: normalMap
+});
+
 const maxAxis = Math.max(size.x, size.y, size.z);
-mesh.scale.multiplyScalar(100 / maxAxis);
+mesh.scale.multiplyScalar(4 / maxAxis);
+mesh.material = material;
+if (mesh.geometry && mesh.geometry.attributes && mesh.geometry.attributes.uv) {
+  mesh.geometry.attributes.uv2 = mesh.geometry.attributes.uv;
+}
 scene.add(mesh)
 mesh.position.set(0,-4,0)
+
+
 
 const measure = new THREE.Vector3()
 console.log(box.getSize(measure))
@@ -59,7 +84,7 @@ function animate() {
   cube.rotation.x += 0.025;
   cube.rotation.y = 0.06;
 */
-    mesh.rotation.y += 0.01
+    mesh.rotation.y += 0.005;
     renderer.render( scene, camera );
 
 }

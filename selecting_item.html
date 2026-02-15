@@ -38,8 +38,6 @@
 
                   </div>
               </h3>
-
-
               <button id="select-item-button" class="button-blue">Select</button>
             </div>
           </div>
@@ -50,16 +48,33 @@
           <h1 class="saving-for">Saving for <em id="item-name">...</em></h1>
           <h2 class="caption">I want to reach this goal by: </h2>
           <!--datepicker-->
-          <button id="select-date">Select Date</button>
-          <div id="month-year-selector" class="hidden">
-            <!--overlay-->
-            <div class="month-year">
-              <div id="months-selector"></div>
-              <div id="year-selector"></div>
-            </div>
+          <section class="datepicker-section">
+            <button id="select-date" class="select-date"><h5 id="selector-text">Select Date</h5> <img src="./public/arrow_back.svg"></button>
+            <div id="date-selector" class="date-selector hidden">
+              <div class='picker-head'>
+                <h1 id="curr-month-year">5/4/3</h1>
+                <div id="move-button-months-button">
+                  <button id="bck-mth" class="move-month"><img src="./public/arrow_back.svg"></button>
+                  <button id="fwd-mth" class="move-month"><img src="./public/arrow_fwd.svg"></button>
+                </div>
+              </div>
+              <div class="days">
+                  <span>Sun</span>
+                  <span>Mon</span>
+                  <span>Tue</span>
+                  <span>Wed</span>
+                  <span>Thu</span>
+                  <span>Fri</span>
+                  <span>Sat</span>
+              </div>
             
-            <button id="confirm">set date</button>
-          </div>
+              <div class="dates"></div>
+              <button id="confirm">set date</button>
+            </div>
+          </section>
+            
+            
+          
           <section class="hidden" id="show-after-date-confirmed">
             <h3 class="caption">To reach my goal I need to save $<em id="monthly-amt">...</em> per month!</h3>
 
@@ -78,7 +93,6 @@
 
 
 
-    <a href="/talk.html">talk to others</a>
    
     <script type="module" src="./scripts/three_environments/home_page.js"></script>
     <script type="module" src="./scripts/load_item_page.js"></script>
@@ -88,3 +102,4 @@
     <script src="https://ipapp-673e.restdb.io/rest/_jsapi.js"></script>
   </body>
 </html> 
+

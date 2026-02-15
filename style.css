@@ -172,9 +172,9 @@ input, select {
 }
 /* hide when needed bruteforce method. i think its this or innerHTML and this is easier*/ 
 .hidden {
-    display: none;
-    width: 0px;
-    height: 0px;
+    display: none  !important; 
+    width: 0px  !important;
+    height: 0px  !important;
 }
 
 /* login/signup */
@@ -504,7 +504,7 @@ input.submit-login-signup-button, .payment-form input.submit-login-signup-button
 
 .image-carousell {
     display: flex;
-    gap: 1vw;
+    gap: 1vh;
     position: relative;
     align-items: stretch;
     flex-direction: column;
@@ -544,7 +544,7 @@ input.submit-login-signup-button, .payment-form input.submit-login-signup-button
 }
 
 #carou-img-holder {
-    gap: 2%
+    gap: 1vh;
 }
 
 .item-details {
@@ -586,22 +586,101 @@ input.submit-login-signup-button, .payment-form input.submit-login-signup-button
 }
 
 /*date picker*/
+.datepicker-section {
+    width: 40%;
+}
 .selector-option {
     cursor: pointer;
     margin: 0px;
     padding: 0.5vh 1vw;
 }
 
-.monthyear-selected {
-    background-color: gray;
-    border-radius: 12px;
-    color: white;
+.date-selector {
+    display: flex;
+    width: 96%;
+    flex-direction: column;
+
+    border-radius: 0.5rem;
+    padding: 2% 2%;
+
+    /* from https://cssgradient.io/*/
+    background: #CFCBCB;
+    background: linear-gradient(180deg,rgba(207, 203, 203, 1) 0%, rgba(238, 237, 237, 1) 100%);
+    
+}
+
+.select-date {
+    border-radius: 0.5rem;
+    padding: 0 5%;
+    width: 100%;
+    color: var(--grey-text);
+    background: var(--grey-alt);
+    border-style: none;
+    text-align: left;
+    justify-content: space-between;
+    font-weight: 500;
+    font-size: 1.1rem;
+    display: flex;
+}
+
+.select-date img {
+    transform: rotate(270deg);
+}
+
+.selector-on {
+    background-color: var(--green-main);
+    color: var(--white-main)
+}
+
+.selector-on img {
+    transform: rotate(90deg);
 }
 
 .month-year {
     display: flex;
     flex-direction: row;
     gap: 1vw;
+}
+
+.days, .dates {
+    display: grid;
+    grid-template-columns: repeat(7, 12%);
+    gap: 0.5rem;
+    margin-block: 10px;
+    text-align: center;
+}
+
+.picker-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    padding: 0 2%;
+}
+
+.move-month {
+    border-style: none;
+    background-color: none;
+    background: none;
+    cursor: pointer;
+    
+
+}
+
+.date-item {
+    border-style: none;
+    background-color: none;
+    background: none;
+    font-weight: 500;
+    padding: 0.5vh;
+
+}
+
+.date-selected {
+    font-weight: 700;
+    background-color: var(--green-main);
+    color: var(--white-main);
+    border-radius: 0.5rem;
 }
 
 #checkbox {
@@ -639,10 +718,10 @@ input.submit-login-signup-button, .payment-form input.submit-login-signup-button
 
 .fullbar {
     width: 100%;
-    height: 5vh;
+    height: 3vh;
     background-color: beige;
     border-radius: 1rem;
-    border-color: red;
+    border-color: var(--green-main) ;
     border-width: 0.3rem;
     position: relative;
     border-style: solid;
@@ -654,7 +733,7 @@ input.submit-login-signup-button, .payment-form input.submit-login-signup-button
     margin: 0;
     height: 100%;
     border-radius: 1rem;
-    background-color: aqua;
+    background-color: var(--green-main);
 }
 
 /* nav head */
@@ -707,3 +786,93 @@ header {
     display: none;
 }
 
+.select-money-amount {
+    width: 70%;
+}
+
+.select-money-amount input {
+    width: 100%;
+    background-color: var(--white-main);
+    padding: 0.75rem 1rem;
+    
+    border: none;
+    border-style: none;
+    color: var(--primary-text-color);
+    font-weight: 400;
+    margin-top: 0.5rem;
+
+    border-style: solid;
+    box-sizing: border-box;
+}
+
+#confirm-added-money {
+    padding: 2vh 2vw;
+    background-color: var(--red-main);
+    border-style: none;
+    border-radius: 2rem;
+    font-size: 1rem;
+    width: 50%;
+    margin: 1rem 0.5rem;
+}
+
+
+#confirm-added-money:hover {
+    font-weight: 600;
+    scale:1.05
+}
+
+.payment-form-style {
+    width: 98%;
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+
+
+.payment-type {
+    padding: 1vh 4vw;
+    display: flex;
+    justify-content: space-between;
+    border-style: none;
+    font-size: 1.1rem;
+}
+
+.vert-line {
+    width: 100%;
+    height: 0.1rem;
+    background-color: black;
+}
+
+.qrcode {
+    width: 40%;
+    height: 40%;
+}
+
+.row-on-desktop {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-caption {
+    font-size: 2rem;
+    color: var(--blue-main);
+    text-decoration: underline;
+    font-style: italic;
+
+}
+
+.return-to-add-money {
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+    cursor: pointer;
+    color: var(--primary-text-color);
+    text-decoration: none;
+    font-style: normal;
+}

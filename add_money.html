@@ -8,27 +8,30 @@
   <body class="">
     
     <div id="3js-env"></div>
+    
     <div class="selected-item-section" id="selected-item-section">
-      <h1 id="current-item">No Item Selected</h1>
-      <div class="progress-bar-row flex-row">
-        <div class="fullbar">
-          <div id="progress" class="progressbar"></div>
+        <h1 id="current-item">No Item Selected</h1>
+        <div class="progress-bar-row flex-row">
+          <div class="fullbar">
+            <div id="progress" class="progressbar"></div>
+          </div>
+          
         </div>
         <h2 id="progression-numeric-comparison">6/7</h2>
       </div>
-    </div>
-    <section id="html-main-half">
+      
+     <section id="html-main" class="half-size">
       <div class="page-main">
-        <h1 class="section-head">Amount to Add</h1>
-        <form id="select-money-amount">
+      <h1 class="section-head">Amount to Add</h1>
+        <form id="select-money-amount" class="select-money-amount">
             <input for="add-money-amt" id="money" type="number">
-            <h3 id="form-input-error"></h3>
+            <h3 id="form-input-error" class="error" style="margin:1.1rem 0"></h3>
             <label for="money">Note: You receive 1points for every dollar you save! Commission: 5%</label>
 
-            <button id="confirm-added-money" type="submit">Send</button>
+            <button id="confirm-added-money" type="submit">Save</button>
         </form>
       </div>
-    </section>
+
    
     <script type="module" src="./scripts/three_environments/home_page.js"></script>
     <script type="module" src="./scripts/set_item_progress.js"></script>

@@ -13,18 +13,8 @@ renderer.setAnimationLoop( animate );
 const three_env = document.getElementById('3js-env')
 three_env.appendChild( renderer.domElement );
 
-const geometry = new THREE.BoxGeometry( 2, 2, 1 );
-const material = new THREE.MeshBasicMaterial( { color: 0x90ffee } );
-const cube = new THREE.Mesh( geometry, material );
-scene.add( cube );
-
-camera.position.z = 5;
-
-cube.x = -100
 function animate() {
 
-  cube.rotation.x += 0.025;
-  cube.rotation.y = 0.06;
 
   renderer.render( scene, camera );
 

@@ -1,15 +1,20 @@
 // init date vals
 import { DB_URL, APIKEY } from "./config";
+import { updateItem } from "../index.js";
 const currentDate = new Date();
 const currentYear = currentDate.getFullYear();
 const currentMonth = currentDate.getMonth() + 1;
+
+let selectedDate = new Date();
 let selected_month = currentMonth;
 let selected_year = currentYear;
 
 
-const selector = document.getElementById('month-year-selector');
-const month_selector = document.getElementById('months-selector');
-const year_selector = document.getElementById('year-selector');
+const userdata = JSON.parse(window.localStorage.getItem('Userdata'))
+const selector = document.getElementById('date-selector');
+console.log(selector)
+const month_nxt = document.getElementById('fwd-mth');
+const month_bck = document.getElementById('bck-mth')
 const selector_toggle = document.getElementById('select-date');
 const confirm_date = document.getElementById('confirm');
 const monthly_amt_tag = document.getElementById('monthly-amt');
@@ -17,6 +22,9 @@ const checkbox = document.getElementById('checkbox');
 const affirm_text = document.querySelector('.affirm');
 const select_item = document.getElementById('select-item');
 const final_date = document.getElementById('final-date');
+const dates = document.querySelector('.dates')
+const selector_text = document.getElementById('selector-text')
+const displayed_monthyear = document.getElementById('curr-month-year');
 
 // get price
 const price = JSON.parse(window.localStorage.getItem('item-listing-data')).price;
@@ -30,68 +38,103 @@ var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'A
 // toggle selector vis
 
 selector_toggle.addEventListener('click', function(e) {
+    console.log('hi')
     selector.classList.toggle('hidden');
+    selector_toggle.classList.toggle('selector-on');
 
 })
 
-// load month buttons
-for (let i = 0; i < months.length; i++) {
-    const month = document.createElement('h3');
-    console.log(months[i])
-    month.className = 'selector-option month';
-    month.innerText = months[i];
-    month.id = i+1;
-    month_selector.appendChild(month); 
+
+month_nxt.addEventListener("click", () => {
+  if (selected_month === 11) selected_year++;
+  selected_month = (selected_month + 1) % 12;
+  displayDates();
+  showSelectedMonthYear();
+});
+
+month_bck.addEventListener("click", () => {
+  if (selected_month === 0) selected_year--;
+  selected_month = (selected_month - 1 + 12) % 12;
+  displayDates();
+  showSelectedMonthYear();
+});
+
+function showSelectedMonthYear() {
+    displayed_monthyear.innerText = `${months[selected_month]} ${selected_year}`
 }
 
-// load year options (loads upto 5 years)
-for (let i = 0; i < 5; i++) {
-    console.log('1')
-    const year = document.createElement('h3');
-    year.className = 'selector-option year';
-    year.innerText = currentYear + i;
-    year.id = currentYear + i;
-    year_selector.appendChild(year);
+// taken from github
+const handleDateClick = (e) => {
+  const button = e.target;
+
+  // remove the 'selected' class from other buttons
+  const selected = dates.querySelector(".date-selected");
+  selected && selected.classList.remove("date-selected");
+
+  // add the 'selected' class to current button
+  button.classList.add("date-selected");
+
+  // set the selected date
+  selectedDate = new Date(selected_year, selected_month, parseInt(button.textContent));
+  console.log()
+  selector_text.innerHTML = `${selectedDate.getDay()}/${selectedDate.getMonth()}/${selectedDate.getFullYear()}`;
 };
 
+function displayDates() {
+    dates.innerHTML = "";
 
-// regeneration onclick listeners to month buttons.
+    const lastOfPrevMonth = new Date(selected_year, selected_month, 0);
 
-function setMonthAction() {
-    const month_tags = month_selector.querySelectorAll('.month')
-    for (let i = 0; i < months.length; i++) {
-        let month  = month_tags[i]
-        // horrible bool statement but you get the idea right mr d
-        if (!((selected_year === currentYear) && (month < currentMonth))) {
-            month.addEventListener('click', function(e) {
-                selected_month = month.id
-                month_tags.forEach(m =>
-                    m.classList.remove('monthyear-selected')
-                );
-                month.classList.add('monthyear-selected');
+    for (let i = 0; i <= lastOfPrevMonth.getDay(); i++) {
+        if (lastOfPrevMonth.getDay() === 6) {break}
 
-            })
-            
-        } else {
-            month.classList.add('unselectable');
-        }
+        const text = lastOfPrevMonth.getDate() - lastOfPrevMonth.getDay() + i;
+        const button = createDateButton(text, true);
+        dates.appendChild(button);
     }
+
+    // get the last date of the month
+    const lastOfMonth = new Date(selected_year, selected_month + 1, 0);
+
+    for (let i = 1; i <= lastOfMonth.getDate(); i++) {
+        const button = createDateButton(i, false);
+        button.addEventListener("click", handleDateClick);
+        dates.appendChild(button);
+    }
+
+    const firstOfNextMonth = new Date(selected_year, selected_month + 1, 1);
+
+    for (let i = firstOfNextMonth.getDay(); i < 7; i++) {
+        // if the first day starts on Sunday don't show the trailing dates
+        if (firstOfNextMonth.getDay() === 0) break;
+
+        const text = firstOfNextMonth.getDate() - firstOfNextMonth.getDay() + i;
+        const button = createDateButton(text, true);
+        dates.appendChild(button);
+    }
+
 }
 
-// set here to reuse toggle code
-const year_tags = year_selector.querySelectorAll('.year')
-for (let i = 0; i < year_tags.length; i++) {
-    let year = year_tags[i]
-    console.log(year_tags)
-    year.addEventListener('click', function (e) {
-        selected_year = year.id;
-        year_tags.forEach(y =>
-            y.classList.remove('monthyear-selected')
-        );
-        year.classList.add('monthyear-selected')
-        setMonthAction();
-    });
-}
+function createDateButton(text, isDisabled = false) {
+  const button = document.createElement("button");
+  button.textContent = text;
+  button.disabled = isDisabled;
+  button.className = 'date-item'
+  if (!isDisabled) {
+    const buttonDate = new Date(selected_year, selected_month, text).toDateString();
+    const today = buttonDate === new Date().toDateString();
+    const selected = buttonDate === selectedDate.toDateString();
+
+    button.classList.toggle("today", today);
+    button.classList.toggle("selected", selected);
+  }
+  return button;
+};
+
+displayDates();
+showSelectedMonthYear()
+
+
 
 // confirm final month-year and calc
 confirm_date.addEventListener('click', function (e) {
@@ -103,6 +146,8 @@ confirm_date.addEventListener('click', function (e) {
     const toggle_show = document.getElementById('show-after-date-confirmed');
     toggle_show.classList.remove('hidden');
     selector.classList.toggle('hidden');
+    selector_toggle.classList.toggle('selector-on')
+
 })
 
 
@@ -121,62 +166,12 @@ affirm_text.addEventListener('click', function (e) {
 
 select_item.addEventListener('click', function(e) {
     if (select_item.classList.contains('enabled')) {
-        // there is going to be a lot here im writing an api req
-        let user = {
-            "username": "",
-            "password": "",
-            "email": "",
-            "currentitem": "",
-            "itemprogress": 0
-        }
-
-        const userdata = JSON.parse(window.localStorage.getItem('Userdata'));
-        console.log(window.localStorage.getItem('Userdata'))
-        const DB_URL_INDIV = `${DB_URL}/individuals`;
-
-        for (const key in user) {
-            console.log(key)
-            if (key in userdata) {
-                user[key] = userdata[key];
-            }
-        }
-        console.log(user)
-        
-
-        user.currentitem = item_name;
-        console.log(user.currentitem)
-        user.itemprogress = 0;
-        var setting = {
-            "method": "PUT",
-            "headers": {
-                "x-apikey": APIKEY,
-                "Content-Type": "application/json"
-            },
-            "body": JSON.stringify(user)
-        }
-
-        fetch(`${DB_URL_INDIV}/${userdata._id}`, setting)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("PUT request failed");
-                }
-                return response.json();
-            })
-            .then(data => {
-                window.localStorage.setItem('current-item', item_name);
-                console.log("data", data);
-                console.log(window.localStorage);
-                window.localStorage.setItem('Userdata', JSON.stringify(user))
-                window.location.href = './main.html'
-                
-            })
-
+        updateItem(item_name, userdata)
 
     }
 })
 
 
-setMonthAction();
 
 
 

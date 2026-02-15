@@ -3,7 +3,8 @@ import { getDoc,
     getFirestore, 
     collection, 
     doc, 
-    setDoc  } from "firebase/firestore";
+    setDoc,
+    updateDoc  } from "firebase/firestore";
 
 
 // firebase setup + function export
@@ -37,7 +38,6 @@ export async function checkUserAvail(username) {
 }
 
 export async function addUser(username, password, email, card, img) {
-    console.log(img)
     const userNew = doc(USER_DB, username);
     const userdata = {
         'username': username,
@@ -76,10 +76,71 @@ export async function getUser(username, password) {
         }
 
     } catch (err) {
-        console.error("Error adding user:", err);
+        console.error("Error getting user:", err);
     }
 
     // easiser to change the error msg here than to do it in login.js
     document.querySelector('.error').classList.remove('hidden');
     return false
+}
+
+
+export async function updateItem(item, userdata) {
+    userdata.currentitem = item;
+    const username = userdata.username;
+    window.localStorage.setItem('Userdata', JSON.stringify(userdata));    
+    const userdoc = doc(USER_DB, username);
+    try {
+        await updateDoc(userdoc, 
+            {
+                'currentitem': item,
+                'itemprogress': 0
+            }
+        )
+        window.location.href = './main.html';
+    } catch (err) {
+        console.error("Error updating item:", err);
+    }
+    
+}
+
+export async function updateSavedAmount(amount, userdata) {
+    const username = userdata.username;
+    const userdoc = doc(USER_DB, username)
+    userdata.itemprogress = amount
+    window.localStorage.setItem('Userdata', JSON.stringify(userdata)); 
+
+    try {
+        await updateDoc(userdoc,
+            {
+                'itemprogress': amount
+            }
+        )
+        window.location.href = './main.html'
+    } catch (err) {
+        console.error('Error changing numbr:', err)
+    }
+    
+}
+
+export async function addCard(userdata, cardData) {
+    const username = userdata.username;
+    const userdoc = doc(USER_DB, username);
+    let cards = JSON.parse(userdata.card);
+    cards.append(cardData);
+
+    userdata.card = cards;
+    window.localStorage.setItem('Userdata', JSON.stringify(userdata)); 
+
+    try {
+        await updateDoc(userdoc,
+            {
+                'card': JSON.stringify(cards)
+            }
+        )
+    } catch (err) {
+        console.error('Error changing numbr:', err)
+    }
+
+
 }
