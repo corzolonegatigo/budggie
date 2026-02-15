@@ -23,18 +23,27 @@
       <div  class="login-signup-form hide-toggle">
         <h2 class="subhead">Sign Up</h2>
         <form id="signup" >
-          <input type="file" id="imageInput" accept="image/*"/>
+          <div class="pfp-form">
+            <input type="file" id="imageInput" accept="image/*" hidden/>
+            <div class="pfp-selector-wrapper" id="pfp-wrapper">
+              <img class="pfp-input-preview" id="pfp-selected" src="./public/userprofile.svg">
+              <img class="pfp-plus-button" src="./public/blueplus.svg">
+              
+            </div>
+            <label class="pfp-select-label">Select a profile picture</label>
+          </div>
           <input type="text" id="email" placeholder="Email" class='signin-field' required>
           <input type="text" id="username" placeholder='Username' class='signin-field' required>
-          <input type="text" id="password" placeholder='Password' class='signin-field' required>
-          <input type="text" id="password-cfmr" placeholder='Confirm Password' class='signin-field' required>
+          <input type="password" id="password" placeholder='Password' class='signin-field' required>
+          <input type="password" id="password-cfm" placeholder='Confirm Password' class='signin-field' required>
+          <h3 class="error hidden" id="password-error">This username is taken, please try another one.</h3>
 
           
           
           <h4 class="caption"> If you already have an account, <a id="login-signup-switch" href="./index.html">log in.</a></h4>
           
         </form>
-        <h3 class="error hidden">This username is taken, please try another one.</h3>
+        <h3 class="error signup-error hidden">This username is taken, please try another one.</h3>
         <input type="submit" value="Sign Up" id="login-submit" class="submit-login-signup-button">
       </div>
 
@@ -42,6 +51,7 @@
       <!-- this one is a little unique so html structure different from signin/login-->
       <form id="payment-details" class="hidden hide-toggle payment-form">
         <h2 class="subhead hide-toggle hidden">Complete Your Account!</h2>
+        <label class="payment-form-label" for="country" style="margin-top: 2rem;">Select Payment Type</label>
         <section class="payment-opts">
             <!-- i think you can use radio(?) i js did it like this cause i know how to do it-->
             <button class='payment-opt' id="cc">Credit Card</button>
@@ -84,6 +94,7 @@
             
           </section>
         </div>
+        <h3 class="error payment-setup-error hidden"></h3>
         <input type="submit" value="Confirm Payment" id="submit-payment-info" class="submit-login-signup-button">
       </form>
        

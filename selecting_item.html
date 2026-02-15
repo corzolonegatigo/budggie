@@ -13,29 +13,36 @@
         <nav id="nav-page-head-listings">
             <a class="nav-head-link" href="/main.html" id="shop-redirect">Shop</a>
           </nav>
-        <section class="hide-toggle">
+        <section class="hide-toggle flex-row-hori-center">
           
+  
           <img id="selected-img">
           <div class="image-carousell" id="image-carousell">
-              <button class="change-carousell-item" id="carou-bck">bck</button>
-              <button class="change-carousell-item" id="carou-fwd">fwd</button>
+              <button class="change-carousell-item" id="carou-bck"><img src="./public/arrow_back.svg"></button>
+              <div class="flex-center-column" id="carou-img-holder"></div>
+              <button class="change-carousell-item" id="carou-fwd"><img src="./public/arrow_fwd.svg"></button>
 
           </div>
 
-          <h2 id="item-title">NO ITEM</h2>
-          <p id="item-desc">blah blah blah blah blah blah blah blah</p>
-          <h2 id="price">$123</h2>
-          <h3 class="sold-by">Sold by <em id="seller"></em></h3>
+          <div class="item-details">
+            <div>
+              <h2 id="item-title" class="listing-name">NO ITEM</h2>
+              <p id="item-desc" class="item-description">blah blah blah blah blah blah blah blah</p>
+            </div>
+            <div>
+              <h2 id="price" class="listing-price">$123</h2>
+              <h3 class="seller-listing">Sold by <em id="seller" class="bold"></em></h3>
 
-          <h3 class="reviews">
-              <div class='reviews-row'>
+              <h3 class="reviews">
+                  <div class='reviews-row'>
 
-              </div>
-          </h3>
+                  </div>
+              </h3>
 
 
-          <button id="select-item-button">SELECT ITEM</button>
-
+              <button id="select-item-button" class="button-blue">Select</button>
+            </div>
+          </div>
         </section>
         <section class="hide-toggle hidden">
           <!-- hidden. vis toggled via select item button-->

@@ -14,8 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const saved_amt = window.localStorage.getItem('saved_amt');
     const money_to_add = window.localStorage.getItem('money_to_add');
     delete userdata._id
-    console.log(money_to_add)
-    console.log(window.localStorage)
 
 
     document.getElementById('amt-payable').innerText = `$${money_to_add}`

@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () { 
-    const img_carousell = document.getElementById('image-carousell');
+    const img_carousell = document.getElementById('carou-img-holder');
+    console.log(img_carousell)
     const display_img = document.getElementById('selected-img');
 
     let img_arr = JSON.parse(window.localStorage.getItem('item-listing-data')).img_carou;
@@ -7,6 +8,22 @@ document.addEventListener("DOMContentLoaded", function () {
     // get fwd and back buttons for carousell
     const fwd_btn = document.getElementById('carou-fwd');
     const bck_btn = document.getElementById('carou-bck');
+
+
+
+     function set_images() {
+        display_img.src = img_arr[0];
+        // dont inject and set in same loop cause this loop is called multiple times (do i need to cmment this)
+        for (let i = 0; i < CAROU_IMG_AMT; i++) {
+            const img = document.getElementById(i);
+            img.src = img_arr[i];
+
+        }
+
+        
+    }
+
+
 
     // event listeners to change arr order
     fwd_btn.addEventListener('click', function(e) {
@@ -33,23 +50,17 @@ document.addEventListener("DOMContentLoaded", function () {
         img.className = 'slide';
         img.id = i;
 
+        if (i === 0) {
+            img.classList.add('current-slide')
+        } 
+
         img_carousell.appendChild(img);
 
     }
     
     
-    function set_images() {
-        display_img.src = img_arr[0];
-        // dont inject and set in same loop cause this loop is called multiple times (do i need to cmment this)
-        for (let i = 0; i < CAROU_IMG_AMT; i++) {
-            const img = document.getElementById(i);
-            img.src = img_arr[i];
-
-        }
-
-        
-    }
-
+    
+   
     set_images()
 
 })

@@ -54,20 +54,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 const item_title = document.createElement('h2');
                 item_title.innerText = itemdata.title;
+                item_title.className = 'listing-name';
                 
                 const item_desc = document.createElement('p');
                 item_desc.innerText = itemdata.desc;
-                item_desc.className = "item-description"
+                item_desc.className = "item-description hide-on-mobile"
 
                 const item_seller = document.createElement('h3');
-                item_seller.innerText = `Sold by ${itemdata.sold_by}`
+                item_seller.innerHTML = `Sold by <em class='bold'>${itemdata.sold_by}</em>`
+                item_seller.className = 'seller-listing'
 
+                const item_price = document.createElement('h2');
+                item_price.innerText = `$${[itemdata.price]}`
+                item_price.className =  'listing-price';
+
+                const seller_price_div = document.createElement('div');
+                seller_price_div.className = 'listing-bottom'
                 
                 // append to specific post
                 item_listing.appendChild(item_thumbnail);
                 item_listing.appendChild(item_title);
                 item_listing.appendChild(item_desc);
-                item_listing.appendChild(item_seller);
+
+                
+                seller_price_div.appendChild(item_price);
+                seller_price_div.appendChild(item_seller);
+                item_listing.appendChild(seller_price_div);
+                
 
                 // append post to section
 

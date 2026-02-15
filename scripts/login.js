@@ -1,5 +1,5 @@
 import { getUser } from "../index.js";
-
+localStorage.clear();
 document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("login-submit").addEventListener("click", function (e) {

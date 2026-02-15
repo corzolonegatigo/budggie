@@ -14,6 +14,7 @@
     --red-main: #FCD1D3;
     --red-darker: #F69094;
     --blue-main: #2270FF;
+    --blue-desat: #8398A8;
 
 }
 
@@ -29,7 +30,7 @@ html {
 .flex-row {
     display: flex;
     flex-direction: row;
-    gap: 12px;
+    gap: 1rem;
 }
 
 .flex-center-column {
@@ -40,6 +41,14 @@ html {
     justify-content: center;
     height: 100%;
 
+}
+
+.flex-row-hori-center {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    height: 90%;
 }
 
 .flex-center-row {
@@ -152,7 +161,14 @@ input, select {
     margin: 0 0 0.5rem 0;
     font-weight: 300;
     text-align: left;
-    margin: 0 auto;
+    margin: 0.1rem auto;
+    font-size: 1.1rem;
+    font-style: italic;
+}
+
+.bold {
+    font-weight: 600;
+    font-style: normal;
 }
 /* hide when needed bruteforce method. i think its this or innerHTML and this is easier*/ 
 .hidden {
@@ -291,9 +307,8 @@ input.submit-login-signup-button, .payment-form input.submit-login-signup-button
     flex-direction: row;
     flex-wrap: wrap;
     gap: 1rem;
-    margin-top: 2rem;
-    
-   
+    margin-top: 0.5rem;
+
 }
 
 .payment-opt {
@@ -324,7 +339,14 @@ input.submit-login-signup-button, .payment-form input.submit-login-signup-button
     scale: 1.2;
 }
 
+.payment-setup-error {
+    margin-bottom: 0.5rem;
+}
 
+#password-error {
+    font-size: 0.75rem;
+    margin: 0.1rem 0
+}
 
 
 /* add images here instead of in html itself because dn worry about the border radius*/
@@ -339,6 +361,59 @@ input.submit-login-signup-button, .payment-form input.submit-login-signup-button
 #mcard {
     background-image: url('./mcard.png');
     background-size: contain;
+}
+
+
+/* pfp img selector.  */
+.pfp-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+.pfp-selector-wrapper {
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    align-items: center ;
+    display: flex;
+    justify-content: center;
+    flex: 0 0 auto;
+}
+
+.pfp-plus-button {
+    width: 1.25rem;
+    height: auto;
+    position: absolute;
+    top: 70%;
+    right: 8%;
+    background-color: white;
+    border-radius: 100%;
+}
+
+.pfp-input-preview {
+    width: 80%;
+    height: auto;
+    border-style: solid;
+    border-width: 0.1rem;
+    border-color: var(--grey-text);
+    border-radius: 100%;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+
+}
+
+.pfp-select-label {
+    text-wrap: none;
+    font-style: italic;
+    text-decoration: underline;
+    font-size: 1rem;
+    text-wrap: none;
 }
 
 /*socmed */
@@ -369,32 +444,60 @@ input.submit-login-signup-button, .payment-form input.submit-login-signup-button
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 2vh 2vw
+    gap: 2vh;
 }
 
 .listing-item {
-    background-color: antiquewhite;
-    border-radius: 24px;
-    padding: 2vh 2vw;
-    align-items: center;
-    justify-content: center;
-    flex: 1 0 20%;
+    background-color: var(--white-main);
+    border-radius: 0.75rem;
+    padding: 2% 2%;
+    flex: 1 0 25%;
+    display: flex;
+    flex-direction: column;
 }
-
+.listing-name {
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin: 0.5rem 0 0.1rem 0;
+    
+}
 .thumbnail {
-    width: 20vw;
-    height: 20vh;
+    width: 100%;
+    height: 50%;
+    border-style: solid;
+    border-width: 1px;
+
+    border-color: var(--grey-alt-2);
+    border-radius: 0.75rem;
+    object-fit: cover;
 }
 
 .item-description {
     width: 90%;
+    font-size: 0.9rem;
+    margin: 0.2rem 0;
+    color: var(--grey-text-alt)    
+}
+
+.listing-price {
+    font-size: 1.5rem;
+    color: var(--green-main);
+    font-weight: 700;
+    margin: 2rem 0 0 0;
+}
+
+.seller-listing {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin: 0
 }
 
 
 /*item listing page*/
 #selected-img {
-    width: 40vw;
-    height: 30vh;
+    width: 30vw;
+    height: 30vw;
+    margin: 0;
     transition: 200ms opacity ease-in-out;
 
 }
@@ -402,11 +505,84 @@ input.submit-login-signup-button, .payment-form input.submit-login-signup-button
 .image-carousell {
     display: flex;
     gap: 1vw;
+    position: relative;
+    align-items: stretch;
+    flex-direction: column;
+
 }
 
 .slide {
-    width: 10vw;
+    width: 5vw;
+    height: 5vw;
+}
+
+.current-slide {
+    border-style: solid;
+    border-color: black;
+    border-width: 0.1rem;
+    opacity: 80%;
+}
+
+.current-slide::before {
+    background-color: rgba(0, 0, 0, 0.25);
+
+}
+
+.change-carousell-item {
+    background-color: var(--grey-alt);
+    border: none;
+    border-radius: 2px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.change-carousell-item img{
+    height: 50%;
+    object-fit: contain;
+    transform: rotate(90deg);
     
+}
+
+#carou-img-holder {
+    gap: 2%
+}
+
+.item-details {
+    margin-left: 5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.item-details .listing-name {
+    font-size: 2.5rem;
+    font-weight: 400;
+}
+
+.item-details .item-description {
+    font-size: 1.25rem;
+    width: 80%;
+}
+
+.item-details .listing-price {
+    font-size: 2rem;
+}
+
+.item-details .seller-listing {
+    font-size: 1.5rem;
+}
+
+.button-blue {
+    border-style: none;
+    border-radius: 1rem;
+    background-color: var(--blue-desat);
+    width: 80%;
+    padding: 2%;
+    font-weight: 400;
+    font-size: 1.5rem;
+
 }
 
 /*date picker*/
@@ -492,9 +668,15 @@ input.submit-login-signup-button, .payment-form input.submit-login-signup-button
     align-items: center;
 }
 
+
+
 #nav-page-head-listings a {
     color: black;
     text-decoration: none;
+}
+
+#nav-page-head-listings a:hover {
+    text-decoration: underline;
 }
 
 .fake-arrow {

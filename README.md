@@ -73,7 +73,8 @@ If this section grows too long, you may want to split it off into a separate fil
 - - https://www.americanexpress.com/en-us/business/merchant/supplies/details/?pid=CheckoutDL
 - - https://logowik.com/visa-payment-card-logo-vector-svg-pdf-ai-eps-cdr-free-download-15498.html
 - - https://www.mastercard.com/brandcenter/us/en/download-artwork.html
-
+- - https://icons8.com/icons/set/plus--blue
+- - https://www.uni.lodz.pl/en/employee/mariusz-krupinski
 ### Acknowledgements
 
 - I received inspiration for this project from X

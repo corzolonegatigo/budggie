@@ -16,13 +16,11 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.href = './add_money.html'
     })
     // set current item txt
-    if (!window.localStorage.getItem("current-item")) {
-        window.localStorage.setItem("current-item", userinfo.currentitem);
-    }
+    window.localStorage.setItem("current-item", userinfo.currentitem);
 
     const currItem = document.getElementById("current-item");
-    if (window.localStorage.getItem("current-item") === "undefined") {
-        currItem.innerText = "No Item Selected.";
+    if (!(window.localStorage.getItem("current-item"))) {
+        currItem.innerText = "No Item Selected. \n\nBrowse the shop and find something you want to save for.";
         progress_bar.classList.add('hidden');
         progress_number.innerText = ''
 

@@ -1,14 +1,6 @@
 import { addUser, checkUserAvail } from "../index.js";
-import { APIKEY, DB_URL } from "./config.js";
 import hidden_toggle from "./hide_toggle.js";
 
-const USERTEMPLATE = {
-    "username": "",
-    "password": "",
-    "email": "",
-    "currentitem": "",
-    "itemprogress": 0
-}
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -20,6 +12,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const yr_mth = document.getElementById('years');
     const phoneInput = document.getElementById("phone-no");
     const postalInput = document.getElementById("postal-code");
+    const pfpIn = document.getElementById('imageInput');
+    const pfprWrapper = document.getElementById("pfp-wrapper");
+    const pfpPreview = document.getElementById('pfp-selected');
+
+    const imgReader = new FileReader();
+
+    const password_cfm = document.getElementById('password-cfm');
+    const password = document.getElementById('password');
     
     function validate_input_presence(fields) {
         let valid = true
@@ -56,10 +56,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-
-
    // add functionality to payment-option buttons
    let prev = ''
+   let payment_selected = false
     payment_buttons.forEach(b =>
         b.addEventListener('click', function (e) {
             e.preventDefault();
@@ -69,11 +68,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
             b.classList.add('payment-selected');
             prev = b;
-
+            payment_selected = true
         })
         
     );
 
+
+    pfprWrapper.addEventListener("click", () => {
+        pfpIn.click();
+    });
+
+    pfpIn.addEventListener('change', function (e) {
+        const pfp = e.target.files[0]
+        console.log(Boolean(pfp))
+        if (pfp) {
+            
+            imgReader.onload = function(event) {
+                console.log(event.target.result)
+                pfpPreview.src = event.target.result
+            };
+
+            imgReader.readAsDataURL(pfp);
+        };
+
+    })
+
+    password_cfm.addEventListener('input', function (e) {
+        let pw_error_msg = document.getElementById('password-error'); // some problem with query selector but id works so 
+        if (password_cfm.value !== password.value) {
+            pw_error_msg.classList.remove('hidden')
+        } else {
+            pw_error_msg.classList.add('hidden')
+        }
+    })
 
     document.getElementById("login-submit").addEventListener("click", async function (e) {
         e.preventDefault();
@@ -114,11 +141,11 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
                 console.log('here')
                 if (!field_filled) {
-                    document.querySelector('.error').innerText = 'You have a few input fields blank!';
+                    document.querySelector('.signup-error').innerText = 'You have a few input fields blank!';
                 } else {
-                    document.querySelector('.error').innerText = 'This username is taken, please try another one.'
+                    document.querySelector('.signup-error').innerText = 'This username is taken, please try another one.';
                 }
-                document.querySelector('.error').classList.remove('hidden');
+                document.querySelector('.signup-error').classList.remove('hidden');
                 
             }
 
@@ -134,7 +161,10 @@ document.addEventListener("DOMContentLoaded", function () {
     payment_confirm.addEventListener('click', function(e) {
         e.preventDefault()
         const payment_fields = document.querySelectorAll('.payment-field');
-        if (validate_input_presence(payment_fields)) {
+
+        const field_filled = validate_input_presence(payment_fields);
+
+        if (field_filled && payment_selected) {
             let emailIn = document.getElementById("email").value;
             let usernameIn = document.getElementById("username").value;
             let passwwordIn = document.getElementById("password").value;
@@ -155,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // get img input
             const imageIn = document.getElementById('imageInput').files[0]
-            const imgReader = new FileReader();
+            
 
             console.log(document.getElementById('imageInput').files[0])
 
@@ -175,6 +205,15 @@ document.addEventListener("DOMContentLoaded", function () {
             }        
             
             
+        } else {
+            // error msg
+            console.log('hi')
+            if (payment_selected) {
+                document.querySelector('.payment-setup-error').innerText = 'You have a few input fields blank!';
+            } else {
+                document.querySelector('.payment-setup-error').innerText = 'Please select a payment method!';
+            }
+            document.querySelector('.payment-setup-error').classList.remove('hidden');
         }
     })
        
