@@ -5,6 +5,7 @@ import { getDoc,
     doc, 
     setDoc,
     updateDoc  } from "firebase/firestore";
+import { lottie_animation_show } from "./scripts/lottie_animate";
 
 
 // firebase setup + function export
@@ -116,7 +117,8 @@ export async function updateSavedAmount(amount, userdata) {
                 'itemprogress': amount
             }
         )
-        window.location.href = './main.html'
+        lottie_animation_show()
+        
     } catch (err) {
         console.error('Error changing numbr:', err)
     }
@@ -142,5 +144,7 @@ export async function addCard(userdata, cardData) {
         console.error('Error changing numbr:', err)
     }
 
-
 }
+
+
+

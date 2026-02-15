@@ -1,6 +1,4 @@
 import { updateSavedAmount } from "..";
-import { APIKEY, DB_URL } from "./config";
-import hidden_toggle from "./hide_toggle";
 
 document.addEventListener("DOMContentLoaded", function () { 
     const payment_details = document.getElementById('payment-details');
@@ -9,10 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const payment_type_selector = document.getElementById('select-payment-type');
     const payment_confirm = document.getElementById('submit-payment-info');
 
-    let monthyear_injected = false;
     let userdata = JSON.parse(localStorage.getItem("Userdata"));
     const uid = userdata._id
-    const saved_amt = window.localStorage.getItem('saved_amt');
+    const saved_amt = userdata.itemprogress;
+    console.log(saved_amt)
     const money_to_add = window.localStorage.getItem('money_to_add');
     delete userdata._id
     let card_data = JSON.parse(userdata.card)
@@ -26,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const yr_mth = document.getElementById('years');
     const existing_cards = document.getElementById('existing-cards')
 
-
+    document.getElementById('money').innerText = `${money_to_add}`
 
     function validate_input_presence(fields) {
         let valid = true

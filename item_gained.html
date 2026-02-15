@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Budggie</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body id="page">
+   <video
+        id="video"
+        src="./public/completed_video.mp4"
+        autoplay
+        muted
+        playsinline
+        class="video"
+    ></video>
+
+    <section class="annoucement-overlay hidden">
+        <div class="annoucement-text-wrap">
+            <h2>You have reached your goal for a </h2>
+            <h1 id="item"></h1>
+            <p class="caption">Your item will arrive in 5-10 business days.</p>
+            <p class="small-note">Click anywhere to return.</p>
+        </div>
+        
+    </section>
+    <script src="https://ipapp-673e.restdb.io/rest/_jsapi.js"></script>
+    <script type="module" src="./scripts/alert_finish.js"></script>
+    
+  </body>
+</html> 

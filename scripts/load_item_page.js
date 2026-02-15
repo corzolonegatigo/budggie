@@ -44,14 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         });
 
-        back_to_item_page.addEventListener('click', function (e) {
-            hidden_toggle()
-            window.scrollTo(0, 0);
-            params.delete('confirm');
-            window.history.pushState(null, '', `?${params.toString()}`);
-            load_nav_header()
-
-        })
+    
 
         if (confirm_state) {
             hidden_toggle()

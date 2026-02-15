@@ -43,8 +43,6 @@
           </div>
         </section>
         <section class="hide-toggle hidden">
-          <!-- hidden. vis toggled via select item button-->
-          <button id="return-to-viewing">back</button>
           <h1 class="saving-for">Saving for <em id="item-name">...</em></h1>
           <h2 class="caption">I want to reach this goal by: </h2>
           <!--datepicker-->
@@ -69,14 +67,14 @@
               </div>
             
               <div class="dates"></div>
-              <button id="confirm">set date</button>
+              <button id="confirm" class="button-set-date">Set Date</button>
             </div>
           </section>
             
             
           
           <section class="hidden" id="show-after-date-confirmed">
-            <h3 class="caption">To reach my goal I need to save $<em id="monthly-amt">...</em> per month!</h3>
+            <h3 class="caption">To reach my goal I need to save $<em id="monthly-amt" class="listing-price" style="font-size: 1.2rem;">...</em> per month!</h3>
 
             <div class="affirm">
               <img src='./public/checkbox_unlicked.svg' data-alt="./public/checkbox_clicked.svg" id="checkbox"> 
@@ -84,7 +82,7 @@
             </div>
           
 
-            <button id="select-item">Begin</button>
+            <button id="select-item" class="button-blue disabled" >Begin</button>
           </section>
         
         </section>

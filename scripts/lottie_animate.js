@@ -1,0 +1,25 @@
+import Lottie from "lottie-web";
+
+
+export function lottie_animation_show() {
+    const overlay = document.querySelector('.animation-box');
+    overlay.classList.toggle('hidden');
+    const cover_back = document.querySelector('.cover-back');
+    cover_back.classList.toggle('hidden');
+
+    const animation = Lottie.loadAnimation({
+    container: document.getElementById('lottie-container'),
+    renderer: 'svg',       
+    loop: true,          
+    autoplay: true,       
+    path: './public/lottie.json' 
+    });
+
+
+    setTimeout(() => {
+        animation.stop();
+        overlay.classList.toggle('hidden')
+        cover_back.classList.toggle('hidden');
+        window.location.href = './main.html'
+    }, 3000);
+}

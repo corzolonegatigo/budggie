@@ -8,13 +8,16 @@
   <body class="">
     <div id='3js-env'></div>
     <a class="return-to-add-money" href="./add_money.html"> <img class="back-arrow" src='/public/arrow_back.svg'>Return</a>
-    
-
+    <div class="animation-box hidden">
+        <h1>You've saved <em id="money"></em> dollars!</h1>
+        <div id="lottie-container"></div>
+    </div>
+    <div class="cover-back hidden"></div>
     <div id="html-main" class="full-size">
       <div class="page-main">
-        <h1 class="section-head">Budggy Private Limited</h1>
+        <h1 class="section-head">Budggie Private Limited</h1>
         <h2 class="caption">Payment Due: <em id='amt-added' class="listing-price"></em></h2>
-        <form id="select-payment-type" class="payment-form-style ">
+        <form id="select-payment-type" class="payment-form-style">
             <div class="vert-line"></div>
             <button class="payment-type" id="card"><h4>Use Credit/Debit Card</h4> <img src="/public/arrow_fwd.svg"></button>
             <div class="vert-line"></div>
@@ -28,7 +31,7 @@
             </section>
         <label class="payment-form-label" for="country" style="margin-top: 2rem;">Select Payment Type</label>
         
-        <section class="payment-opts">
+        <section class="payment-opts" style="padding-left: 2vw;">
             <!-- i think you can use radio(?) i js did it like this cause i know how to do it-->
             <button class='payment-opt' id="cc">Credit Card</button>
             <button class='payment-opt' id="visa"></button>
@@ -64,7 +67,7 @@
 
       </form>
 
-   
+   </div>
     <script type="module" src="./scripts/three_environments/home_page.js"></script>
     <script type="module" src="./scripts/handle_payment.js"></script>
     <script src="https://ipapp-673e.restdb.io/rest/_jsapi.js"></script>

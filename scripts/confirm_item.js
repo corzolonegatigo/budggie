@@ -139,7 +139,10 @@ showSelectedMonthYear()
 // confirm final month-year and calc
 confirm_date.addEventListener('click', function (e) {
     const month_diff = (selected_year - currentYear) * 12 + (selected_month - currentMonth);
-    const month_amt = Math.round(price / month_diff);
+    let month_amt = Math.round(price / month_diff);
+    if (month_diff === 0) {
+        month_amt = price
+    }
     monthly_amt_tag.innerText = month_amt;
     final_date.innerText = `${months[selected_month]}, ${selected_year}`;
 
@@ -161,11 +164,11 @@ affirm_text.addEventListener('click', function (e) {
         checkbox.classList.remove("fading");
     }, 150);
 
-    select_item.classList.toggle('enabled');
+    select_item.classList.toggle('disabled');
 });
 
 select_item.addEventListener('click', function(e) {
-    if (select_item.classList.contains('enabled')) {
+    if (!(select_item.classList.contains('disabled'))) {
         updateItem(item_name, userdata)
 
     }

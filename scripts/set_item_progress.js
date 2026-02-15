@@ -46,7 +46,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
         console.log(userinfo)
         progress_number.innerText = `${saved_amt}/${full_amt}`
+
+        if (saved_amt === full_amt) {
+            window.location.href = './item_gained.html'
+        }
     }
+
 })
 
 

@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/Addons.js';
+import { GLTFLoader, FBXLoader } from 'three/examples/jsm/Addons.js';
 
 
 
@@ -22,19 +22,9 @@ const three_env = document.getElementById('3js-env')
 three_env.appendChild( renderer.domElement );
 
 
-
-// load custom mesh
-
-const loader = new GLTFLoader();
-const gltf = await loader.loadAsync('/models/Hammer.glb');
-const mesh = gltf.scene
-
 // get reference size
-const box = new THREE.Box3().setFromObject(mesh)
-const size = box.getSize(new THREE.Vector3())
 
 const textureLoader = new THREE.TextureLoader();
-const texture = textureLoader.load('./models/BaseColour.png');
 
 
 const colorMap = textureLoader.load('./models/BaseColour.png');      // BaseColor / Albedo
@@ -52,19 +42,58 @@ const material = new THREE.MeshStandardMaterial({
   normalMap: normalMap
 });
 
-const maxAxis = Math.max(size.x, size.y, size.z);
-mesh.scale.multiplyScalar(4 / maxAxis);
-mesh.material = material;
-if (mesh.geometry && mesh.geometry.attributes && mesh.geometry.attributes.uv) {
-  mesh.geometry.attributes.uv2 = mesh.geometry.attributes.uv;
-}
-scene.add(mesh)
-mesh.position.set(0,-4,0)
+const fbxload = new FBXLoader();
+
+
+let hammer;
+
+const pivot = new THREE.Group();
+
+fbxload.load('./models/HammerText.fbx', (object) => {
+
+  hammer = object
+  hammer.scale.set(0.05, 0.05, 0.05); // FBX files are often huge
+  scene.add(hammer);
+
+   hammer.traverse((child) => {
+    if (child.isMesh) {
+
+        if (child.geometry?.attributes?.uv) {
+          child.geometry.attributes.uv2 = child.geometry.attributes.uv;
+        }
+
+        child.material = material;
+      }
+  });
+
+  hammer.position.set(4, 0, 0)
+  pivot.add(hammer);
+  pivot.position.set(2,-6,-2)
+  hammer.rotation.z = 1.5;
+
+  
+});
+
+scene.add(pivot);
+
+function animate() {
+  /*
+    cube.rotation.x += 0.025;
+    cube.rotation.y = 0.06;
+  */
+    if (hammer) {
+        pivot.rotation.z += 0.01; // rotate around Y axis
+      }
+
+      renderer.render( scene, camera );
+
+  }
+ 
+
+ renderer.setAnimationLoop( animate );
 
 
 
-const measure = new THREE.Vector3()
-console.log(box.getSize(measure))
 
 
 
@@ -77,16 +106,21 @@ scene.add( cube );
 camera.position.z = 5;
 
 cube.x = -100
-*/
+
+
+const clock = new THREE.Clock();
+
 function animate() {
+  requestAnimationFrame(animate);
 
-/*
-  cube.rotation.x += 0.025;
-  cube.rotation.y = 0.06;
-*/
-    mesh.rotation.y += 0.005;
-    renderer.render( scene, camera );
+  const delta = clock.getDelta();
 
+  if (fbxModel) {
+    fbxModel.rotation.y += delta * 1; // consistent speed
+  }
+
+  renderer.render(scene, camera);
 }
+*/
 
-renderer.setAnimationLoop( animate );
+
