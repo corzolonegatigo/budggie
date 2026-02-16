@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Budggie</title>
+    <script
+      src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.11/dist/dotlottie-wc.js"
+      type="module"
+    ></script>
+    <script type="module" crossorigin src="/budggie/assets/payment-CE4d23co.js"></script>
+    <link rel="modulepreload" crossorigin href="/budggie/assets/style-IsFppSze.js">
+    <link rel="modulepreload" crossorigin href="/budggie/assets/home_page-BAQqMSTm.js">
+    <link rel="modulepreload" crossorigin href="/budggie/assets/index-D3m6cTPi.js">
+    <link rel="stylesheet" crossorigin href="/budggie/assets/style-sR0MOkDM.css">
+  </head>
+  <body class="">
+    <div id='3js-env'></div>
+    <a class="return-to-add-money" href="./add_money.html"> <img class="back-arrow" src='data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20height='24px'%20viewBox='0%20-960%20960%20960'%20width='24px'%20fill='%23000000'%3e%3cpath%20d='M640-80%20240-480l400-400%2071%2071-329%20329%20329%20329-71%2071Z'/%3e%3c/svg%3e'>Return</a>
+    <div class="animation-box hidden">
+        <h1>You've saved <em id="money"></em> dollars!</h1>
+        <div id="lottie-container"></div>
+    </div>
+    <div class="cover-back hidden"></div>
+    <div id="html-main" class="full-size">
+      <div class="page-main">
+        <h1 class="section-head">Budggie Private Limited</h1>
+        <h2 class="caption">Payment Due: <em id='amt-added' class="listing-price"></em></h2>
+        <form id="select-payment-type" class="payment-form-style">
+            <div class="vert-line"></div>
+            <button class="payment-type" id="card"><h4>Use Credit/Debit Card</h4> <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20height='24px'%20viewBox='0%20-960%20960%20960'%20width='24px'%20fill='%23000000'%3e%3cpath%20d='m321-80-71-71%20329-329-329-329%2071-71%20400%20400L321-80Z'/%3e%3c/svg%3e"></button>
+            <div class="vert-line"></div>
+            <button class="payment-type" id="qr"><h4>Use QR payment (Eg. Paynow) </h4> <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20height='24px'%20viewBox='0%20-960%20960%20960'%20width='24px'%20fill='%23000000'%3e%3cpath%20d='m321-80-71-71%20329-329-329-329%2071-71%20400%20400L321-80Z'/%3e%3c/svg%3e"></button>
+            <div class="vert-line"></div>
+        </form>
+         <form id="payment-details" class="hidden payment-form">
+
+            <section id="existing-cards" class="payment-form-style ">
+               
+            </section>
+        <label class="payment-form-label" for="country" style="margin-top: 2rem;">Select Payment Type</label>
+        
+        <section class="payment-opts" style="padding-left: 2vw;">
+            <!-- i think you can use radio(?) i js did it like this cause i know how to do it-->
+            <button class='payment-opt' id="cc">Credit Card</button>
+            <button class='payment-opt' id="visa"></button>
+            <button class='payment-opt' id="mcard"></button>
+            <button class='payment-opt' id="amex"></button>
+          </section>
+          
+          <section style="margin-top: 2rem; margin-bottom: 4rem">
+            <label class="payment-form-label" for="cc-no">Card Details</label>
+            <input type="text" id="cc-name" class='payment-field cc' placeholder="Card Holder" >
+            <input type="text" id="cc-no" class='payment-field cc' placeholder="Card Number" >
+            <div class="expiration-date-form cc">
+                
+              <select name="months" id="months" class="payment-field cc">
+                  <option value="" disabled selected hidden>Month</option>
+                </select>
+                <h1 style="padding: 0; font-weight: 300; margin: 0; font-size: 2rem;">/</h1>
+                <select name="years" id="years" class="payment-field cc">
+                  <option value="" disabled selected hidden>Year</option>
+                </select>     
+                    
+            </div>
+            
+            <input type="text" id="ccv" class="payment-field small cc" placeholder="ccv">
+          </section>
+        <h3 class="error payment-setup-error hidden"></h3>
+        <input type="submit" value="Confirm Payment" id="submit-payment-info" class="submit-login-signup-button" >
+      </form>
+
+      <form id="payment-qr" class="hidden row-on-desktop">
+        <img src="/budggie/assets/qr-OYI-zxHU.png" class="qrcode" id="qrcode">
+        <h3 class="qr-caption bold">Click the QR code to scan.</h3>
+
+      </form>
+
+   </div>
+
+  </body>
+</html> 
