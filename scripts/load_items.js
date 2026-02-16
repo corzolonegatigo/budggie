@@ -26,15 +26,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const newUrl = current_search ? `?search=${encodeURIComponent(current_search)}` : window.location.pathname;
         
+        if (current_search !== '') {
+            // just for the header
+            window.localStorage.setItem('search-url', newUrl);
+            
+            render_items(current_search);
+            window.history.pushState(null, '', newUrl);
 
-        // just for the header
-        window.localStorage.setItem('search-url', newUrl);
+            console.log(window.localStorage)
+            load_nav_header()
+        }
         
-        render_items(current_search);
-        window.history.pushState(null, '', newUrl);
-
-        console.log(window.localStorage)
-        load_nav_header()
         
     })
 

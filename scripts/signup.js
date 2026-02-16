@@ -192,7 +192,6 @@ document.addEventListener("DOMContentLoaded", function () {
             var img_str = ''
             imgReader.onload = function(e) {
                 img_str = e.target.result;
-                console.log(img_str)
                 addUser(usernameIn, passwwordIn, emailIn, card, img_str)
             }
 

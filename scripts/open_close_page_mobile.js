@@ -71,7 +71,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 
             }
             page.classList.remove('hidden');
-            window.location.href = './main.html'    
+            const url = new URL(window.location);
+
+            url.searchParams.delete('page_open');
+            window.history.replaceState(null, '', url.toString());
+               
         }
     }
 

@@ -284,6 +284,7 @@ input.submit-login-signup-button, .payment-form input.submit-login-signup-button
 }
 
 .payment-row {
+    
     @media screen and (max-width: 576px)
     {
         gap: 5%;
