@@ -202,6 +202,8 @@ input, select {
 
     @media screen and (max-width: 576px)
     {
+        margin-top: 20%;
+
         margin-left: 13%;
     }
 }
@@ -242,6 +244,11 @@ input.submit-login-signup-button, .payment-form input.submit-login-signup-button
     border: none;
     margin: 0rem auto;
 
+    @media screen and (max-width: 576px) {
+        position: relative;
+
+        margin: 3rem 0;
+    }
 }
 
 .login-signup-form h4 {
@@ -267,7 +274,7 @@ input.submit-login-signup-button, .payment-form input.submit-login-signup-button
     {
         align-items: center;
 
-        margin-top: 40%;
+        margin-top: 90%;
     }
 
 }
@@ -378,7 +385,7 @@ input.submit-login-signup-button, .payment-form input.submit-login-signup-button
 }
 
 .payment-setup-error {
-    margin-bottom: 0.5rem;
+    margin-top: 2rem;
 }
 
 #password-error {
