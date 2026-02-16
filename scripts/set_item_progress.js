@@ -1,4 +1,4 @@
-import { listing_items } from "./mock_data.js";
+import { listing_items } from "./mock_data.jsgit";
 console.log(window.localStorage)
 
 
