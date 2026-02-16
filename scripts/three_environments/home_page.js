@@ -4,7 +4,7 @@ import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 
 window.addEventListener('DOMContentLoaded', () => { 
   const three_env = document.getElementById('3js-env');
-  const userdata = window.localStorage.getItem('Userdata');
+  const userdata = JSON.parse(window.localStorage.getItem('Userdata'));
   const currentitem = userdata.currentitem;
   
   
@@ -35,7 +35,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const pivot = new THREE.Group();
 
-  if (currentitem === '') {
+  if (currentitem !== '') {
     const colorMapHammer = textureLoader.load('./models/hammer_txt/BaseColour.png');
     const aoMapHammer = textureLoader.load('./models/hammer_txt/AO.png');
     const metallicMapHammer = textureLoader.load('./models/hammer_txt/Metallic.png');

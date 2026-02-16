@@ -94,17 +94,10 @@ input, select {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
-}
-
-.half-size {
+    z-index: 10;
     right: 4%
-}
-
-.full-size {
-    left: 6%;
-    width: 84%;
 }
 
 .page-main {
@@ -541,7 +534,10 @@ input.submit-login-signup-button, .payment-form input.submit-login-signup-button
     height: 50%;
     object-fit: contain;
     transform: rotate(90deg);
-    
+}
+
+.flip {
+    transform: rotate(180deg);
 }
 
 #carou-img-holder {
@@ -785,10 +781,11 @@ header {
 }
 
 #search-query {
-    width: 80%;
+    width: 90%;
     height: 1rem;
     padding: 0.5rem;
     border-radius: 7px;
+    font-size: 1rem;
 }
 
 #enter-query {
@@ -1011,27 +1008,45 @@ header {
 }
 
 #triangle {
-    height: 20%;
-    width: 20%;
+    height: 40%;
+    width: auto;
 }
 
 .scale-open-page {
     width: 100%;
     z-index: 50;
+    background-color: var(--grey-alt-2);
+    border-style: none;
+    height: 5vh;
+}
+
+.page-name {
+    margin: auto auto;
+    font-size: 2rem;
 }
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    .half-sze {
-        width: 84%;
-        
-
-    }
+    .half-size {
+        width: 80%;
+        height: 15%;
+       }
 
     #html-main {
-        height: 20%;
-         bottom: 8%;
+       
+        bottom: 5%;
+        right: 10%;
+         
     }
 
+    .full-size {
+        height: 90%;
+        width: 80%;
+    }
+
+
+    .selected-item-section {
+        width: 88%;
+    }
     
 
 
@@ -1045,9 +1060,17 @@ header {
     }
 
     #html-main {
-        height: 80%;
+        height: 88%;
         top: 8%;
     }
+
+    .full-size {
+        width: 84%;
+    }
+
+
+
+    
 }
 
 /* Medium devices (landscape tablets, 768px and up) */

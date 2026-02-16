@@ -104,7 +104,7 @@ dist
 
 # vuepress v2.x temp solution and cache directory
 .temp solutionconfig.js
-config.js
+
 # Docusaurus cache and generated files
 .docusaurus
 
@@ -138,9 +138,6 @@ config.js
 
 # SvelteKit build / generate output
 .svelte-kit
-
-#ignore config.js (temp solution)
-config.js
 
 
 # End of https://www.toptal.com/developers/gitignore/api/node

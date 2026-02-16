@@ -1,5 +1,5 @@
 import { addUser, checkUserAvail } from "../index.js";
-import hidden_toggle from "./hide_toggle.js";
+import {hidden_toggle} from "./hide_toggle.js";
 
 
 document.addEventListener("DOMContentLoaded", function () {

@@ -1,4 +1,4 @@
-import hidden_toggle from "./hide_toggle";
+import {hidden_toggle} from "./hide_toggle";
 import load_nav_header from "./listing_page_headers";
 import { listing_items } from "./mock_data";
 

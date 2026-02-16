@@ -1,5 +1,4 @@
 // init date vals
-import { DB_URL, APIKEY } from "./config";
 import { updateItem } from "../index.js";
 const currentDate = new Date();
 const currentYear = currentDate.getFullYear();

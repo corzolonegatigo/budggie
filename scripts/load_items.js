@@ -1,4 +1,5 @@
 import load_nav_header from "./listing_page_headers";
+import { hide_on_mobile } from "./hide_toggle";
 import { listing_items } from "./mock_data"
 
 document.addEventListener("DOMContentLoaded", function () { 
@@ -102,6 +103,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     render_items(searchQuery)
     load_nav_header()
+    hide_on_mobile()
+   
 
 
 })
