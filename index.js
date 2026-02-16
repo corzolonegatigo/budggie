@@ -5,7 +5,7 @@ import { getDoc,
     doc, 
     setDoc,
     updateDoc  } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
-//import Lottie from "https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js";
+import Lottie from "https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.13.0/lottie_html.min.js";
 
 // import { lottie_animation_show } from "./scripts/lottie_animate.js";
 
