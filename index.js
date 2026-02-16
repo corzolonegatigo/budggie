@@ -5,7 +5,7 @@ import { getDoc,
     doc, 
     setDoc,
     updateDoc  } from "firebase/firestore";
-import { lottie_animation_show } from "./scripts/lottie_animate";
+import { lottie_animation_show } from "./scripts/lottie_animate.js";
 
 
 // firebase setup + function export

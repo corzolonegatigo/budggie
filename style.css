@@ -173,6 +173,7 @@ input, select {
 /* hide when needed bruteforce method. i think its this or innerHTML and this is easier*/ 
 .hidden {
     opacity: 0  !important; 
+    display: none !important;
     width: 0px  !important;
     height: 0px  !important;
 }
@@ -1008,3 +1009,4 @@ header {
 
     font-size: 1rem;
 }
+

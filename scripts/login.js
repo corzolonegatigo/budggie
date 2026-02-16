@@ -1,6 +1,12 @@
 import { getUser } from "../index.js";
+
+ if (window.localStorage.getItem('Userdata') !== null) {
+    window.location.href = './main.html'
+ }
 localStorage.clear();
 document.addEventListener("DOMContentLoaded", function () {
+
+   
 
     document.getElementById("login-submit").addEventListener("click", function (e) {
         e.preventDefault();

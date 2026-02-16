@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const money_to_add = window.localStorage.getItem('money_to_add');
     delete userdata._id
     let card_data = JSON.parse(userdata.card)
-    const final_amt = Number(saved_amt + money_to_add);
+    const final_amt = Number(saved_amt) + Number(money_to_add);
 
     // get input fields 
     document.getElementById('amt-added').innerText = `$${money_to_add}`
