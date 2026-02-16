@@ -57,7 +57,7 @@ export async function addUser(username, password, email, card, img) {
         window.localStorage.setItem("Userdata", JSON.stringify(userdata));
         window.location.href = './main.html';
     } catch (err) {
-        console.error("Error adding user:", err);
+        console.error("Error addigit ng user:", err);
     }
     
 }
