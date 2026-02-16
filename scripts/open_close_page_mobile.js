@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 
             }
             page.classList.remove('hidden');
-            window.history.pushState('./main.html')      
+            window.location.href = './main.html'    
         }
     }
 
