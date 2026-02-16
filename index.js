@@ -60,8 +60,6 @@ export async function addUser(username, password, email, card, img) {
         console.error("Error adding user:", err);
     }
     
-
-    
 }
 
 export async function getUser(username, password) {
