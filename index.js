@@ -1,10 +1,10 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
 import { getDoc, 
     getFirestore, 
     collection, 
     doc, 
     setDoc,
-    updateDoc  } from "firebase/firestore";
+    updateDoc  } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 import { lottie_animation_show } from "./scripts/lottie_animate.js";
 
 
