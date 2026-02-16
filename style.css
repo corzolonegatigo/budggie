@@ -391,15 +391,15 @@ input.submit-login-signup-button, .payment-form input.submit-login-signup-button
 
 /* add images here instead of in html itself because dn worry about the border radius*/
 #visa {
-    background-image: url('./visa.png');
+    background-image: url('./public/visa.png');
 }
 
 #amex {
-    background-image: url('./amex.png');
+    background-image: url('./public/amex.png');
 }
 
 #mcard {
-    background-image: url('./mcard.png');
+    background-image: url('./public/mcard.png');
     background-size: contain;
 }
 
