@@ -1,4 +1,4 @@
-import { updateItem } from "..";
+import { updateItem } from "../index.js";
 
 document.addEventListener("DOMContentLoaded", function() { 
     const overlay = document.querySelector('.annoucement-overlay');

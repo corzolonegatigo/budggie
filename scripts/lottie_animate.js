@@ -1,4 +1,4 @@
-import Lottie from "lottie-web";
+import Lottie from "https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js";
 
 
 export function lottie_animation_show() {

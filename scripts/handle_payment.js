@@ -1,4 +1,4 @@
-import { updateSavedAmount } from "..";
+import { updateSavedAmount } from "../index.js";
 
 document.addEventListener("DOMContentLoaded", function () { 
     const payment_details = document.getElementById('payment-details');

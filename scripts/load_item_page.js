@@ -1,6 +1,6 @@
-import {hidden_toggle} from "./hide_toggle";
-import load_nav_header from "./listing_page_headers";
-import { listing_items } from "./mock_data";
+import {hidden_toggle} from "./hide_toggle.js";
+import load_nav_header from "./listing_page_headers.js";
+import { listing_items } from "./mock_data.js";
 
 
 // loads data for specific item

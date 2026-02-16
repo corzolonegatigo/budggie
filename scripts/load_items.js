@@ -1,6 +1,6 @@
-import load_nav_header from "./listing_page_headers";
-import { hide_on_mobile } from "./hide_toggle";
-import { listing_items } from "./mock_data"
+import load_nav_header from "./listing_page_headers.js";
+import { hide_on_mobile } from "./hide_toggle.js";
+import { listing_items } from "./mock_data.js"
 
 if (window.localStorage.getItem('Userdata') === null) {
     window.location.href = './index.html'

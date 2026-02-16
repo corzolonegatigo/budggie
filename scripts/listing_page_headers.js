@@ -1,4 +1,4 @@
-import { listing_items } from "./mock_data";
+import { listing_items } from "./mock_data.js";
 
 
 // easier to rerender this component whenever needed than to refresh entire page
