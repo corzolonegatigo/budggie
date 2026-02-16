@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const cardlink = document.createElement('button');
         cardlink.classList = 'payment-type';
         const l4nmbers = card_data.card_number.slice(-4,-1)
-        cardlink.innerHTML = `<h4>Card ending with ${l4nmbers}</h4> <img src="/public/arrow_fwd.svg">`
+        cardlink.innerHTML = `<h4>Card ending with ${l4nmbers}</h4> <img src="./public/arrow_fwd.svg">`
         
         cardlink.addEventListener('click', function (e) {
             e.preventDefault();
