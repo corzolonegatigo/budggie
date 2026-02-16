@@ -134,6 +134,17 @@ window.addEventListener('DOMContentLoaded', () => {
       hammer.position.set(0,-2,2)
       pivot.add(hammer);
     }); 
+
+      let showHammer = false;
+    setInterval(() => {
+
+      // show presence
+      if (hammer && box) {
+        showHammer = !showHammer;
+        hammer.visible = showHammer;
+        box.visible = !showHammer;
+      }
+    }, 3000);
   }
 
 
@@ -171,18 +182,11 @@ window.addEventListener('DOMContentLoaded', () => {
             .add(forward.clone().multiplyScalar(forwardOffset))
     );
 
+
+
   }
 
-  let showHammer = false;
-  setInterval(() => {
-
-    // show presence
-    if (hammer && box) {
-      showHammer = !showHammer;
-      hammer.visible = showHammer;
-      box.visible = !showHammer;
-    }
-  }, 3000);
+  
 
   function animate() {
     pivot.rotation.y += 0.005; // rotate
