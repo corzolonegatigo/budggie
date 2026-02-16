@@ -174,14 +174,23 @@ window.addEventListener('DOMContentLoaded', () => {
     // Base position in front of camera
     const basePos = camera.position.clone().add(forward.multiplyScalar(distance));
 
-    // Move pivot left/down relative to camera
-    pivot.position.copy(
+
+    if (window.innerWidth <= 768) {
+      pivot.position.copy(
+        basePos
+        .add(up.multiplyScalar(-downOffset/2))
+        );
+    } else {
+      // Move pivot left/down relative to camera
+      pivot.position.copy(
         basePos
             .add(right.multiplyScalar(-leftOffset)) // negative right = left
             .add(up.multiplyScalar(-downOffset))    // negative up = down
             .add(forward.clone().multiplyScalar(forwardOffset))
     );
 
+    }
+    
 
 
   }

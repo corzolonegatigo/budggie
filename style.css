@@ -1046,6 +1046,8 @@ header {
 
     .selected-item-section {
         width: 88%;
+        left: 6%;
+        top: 15%
     }
     
 
