@@ -4,7 +4,7 @@ export function lottie_animation_show() {
     const cover_back = document.querySelector('.cover-back');
     cover_back.classList.toggle('hidden');
 
-    const animation = Lottie.loadAnimation({
+    const animation = lottie.loadAnimation({
     container: document.getElementById('lottie-container'),
     renderer: 'svg',       
     loop: true,          
