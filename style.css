@@ -43,13 +43,7 @@ html {
 
 }
 
-.flex-row-hori-center {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    align-items: center;
-    height: 90%;
-}
+
 
 .flex-center-row {
     display: flex;
@@ -541,8 +535,7 @@ input.submit-login-signup-button, .payment-form input.submit-login-signup-button
 
 /*item listing page*/
 #selected-img {
-    width: 30vw;
-    height: 30vw;
+    
     margin: 0;
     transition: 200ms opacity ease-in-out;
 
@@ -585,7 +578,7 @@ input.submit-login-signup-button, .payment-form input.submit-login-signup-button
 .change-carousell-item img{
     height: 50%;
     object-fit: contain;
-    transform: rotate(90deg);
+    
 }
 
 .flip {
@@ -1008,7 +1001,7 @@ header {
     width: 72%;
     height: 52%;
     top: 16%;
-    left: 9%;
+    left: 8%;
     padding: 4%;
     background-color: #EECF6D;
     border-color: black;
@@ -1030,12 +1023,10 @@ header {
 }
 
 .annoucement-overlay h2 {
-    font-size: 3rem;
     line-height: 0.5rem;
     font-weight: 500;
 }
 .annoucement-overlay h1 {
-    font-size: 8rem;
     font-weight: 600;
     font-style: italic;
     color: #70877F;
@@ -1076,6 +1067,11 @@ header {
     margin: auto auto;
     font-size: 2rem;
 }
+
+.carou-img-holder {
+     display: flex;
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     .half-size {
@@ -1101,7 +1097,51 @@ header {
         left: 6%;
         top: 15%
     }
+
+     .annoucement-overlay h2 {
+        font-size: 1rem;
+        line-height: 1.2;
+    }
+    .annoucement-overlay h1 {
+     font-size: 2rem;
+    }
+
+    .caption {
+        font-size: 1rem;
+    }
+
+    .small-note {
+        bottom: 0%;
+        font-size: 0.8rem;
+    }
+    .annoucement-overlay {
+        left: 5%;
+    }
+
+    .flex-row-hori-center {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+        height: 90%;
+        justify-content: center;
+    }
+
+    .image-carousell {
+        flex-direction: row;
+         margin: 0 auto;
+    }
+    .carou-img-holder {
+        flex-direction: row;
+        
+    }
+
+    #selected-img {
+        width: 40vw;
+        height: 40vw;
+    }
     
+        
 
 
 }
@@ -1122,6 +1162,40 @@ header {
         width: 92%;
     }
 
+    .annoucement-overlay h2 {
+        font-size: 2rem;
+    }
+    .annoucement-overlay h1 {
+     font-size: 4rem;
+    }
+
+    .caption {
+        font-size: 2rem;
+    }
+
+    .small-note {
+        bottom: 0%;
+        font-size: 0.8rem;
+    }
+
+    .image-carousell {
+        flex-direction: row;
+        margin: 0 auto;
+    }
+
+    .carou-img-holder {
+        flex-direction: row;
+        
+    }
+
+    #selected-img {
+        width: 40vw;
+        height: 40vw;
+    }
+
+   
+    
+
 
 
     
@@ -1129,11 +1203,76 @@ header {
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
+    .annoucement-overlay h2 {
+        font-size: 2rem;
+    }
+    .annoucement-overlay h1 {
+     font-size: 5rem;
+    }
+
+    .caption {
+        font-size: 1.5rem;
+    }
+
+    .small-note {
+        bottom: -2%;
+        font-size: 1rem;
+    }
+
+    .flex-row-hori-center {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        align-items: center;
+        height: 90%;
+    }
+
+     .change-carousell-item img {
+        transform: rotate(90deg);
+    }
+    .image-carousell {
+        flex-direction: column;
+        margin: 0 0.5rem;
+    }
+
+    .carou-img-holder {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+        height: 100%;
+        
+    }
+
+    #selected-img {
+        width: 30vw;
+        height: 30vw;
+    }
+    
+
+  
 
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+    .annoucement-overlay h2 {
+        font-size: 3rem;
+    }
+    .annoucement-overlay h1 {
+     font-size: 8rem;
+    }
+    .caption {
+        font-size: 2rem;
+    }
+
+    .small-note {
+        bottom: -4%;
+
+    }
+    
+
+
 
 }
 

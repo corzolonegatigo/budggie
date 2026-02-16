@@ -88,6 +88,7 @@ export async function getUser(username, password) {
 
 export async function updateItem(item, userdata) {
     userdata.currentitem = item;
+    userdata.itemprogress = 0;
     const username = userdata.username;
     window.localStorage.setItem('Userdata', JSON.stringify(userdata));    
     const userdoc = doc(USER_DB, username);
@@ -99,6 +100,8 @@ export async function updateItem(item, userdata) {
             }
         )
         window.location.href = './main.html';
+
+
     } catch (err) {
         console.error("Error updating item:", err);
     }

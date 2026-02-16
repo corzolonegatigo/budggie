@@ -62,7 +62,7 @@ function showSelectedMonthYear() {
     displayed_monthyear.innerText = `${months[selected_month]} ${selected_year}`
 }
 
-// taken from github
+// taken from github https://github.com/refinedguides/custom-datepicker/blob/main/script.js#L79
 const handleDateClick = (e) => {
   const button = e.target;
 
@@ -76,7 +76,7 @@ const handleDateClick = (e) => {
   // set the selected date
   selectedDate = new Date(selected_year, selected_month, parseInt(button.textContent));
   console.log()
-  selector_text.innerHTML = `${selectedDate.getDay()}/${selectedDate.getMonth()}/${selectedDate.getFullYear()}`;
+  selector_text.innerHTML = `${selectedDate.getDay()}/${selectedDate.getMonth()+1}/${selectedDate.getFullYear()}`;
 };
 
 function displayDates() {
