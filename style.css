@@ -1140,6 +1140,10 @@ header {
         width: 40vw;
         height: 40vw;
     }
+
+    .taller-on-mobile {
+        height: 30%;
+    }
     
         
 
@@ -1191,6 +1195,10 @@ header {
     #selected-img {
         width: 40vw;
         height: 40vw;
+    }
+
+    .taller-on-mobile {
+        height: 30%;
     }
 
    
@@ -1247,6 +1255,10 @@ header {
     #selected-img {
         width: 30vw;
         height: 30vw;
+    }
+    
+    .taller-on-mobile {
+        height: 88%;
     }
     
 
